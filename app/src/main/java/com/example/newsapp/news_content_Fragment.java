@@ -29,17 +29,16 @@ public class news_content_Fragment extends Fragment {
 
         news = new ArrayList<News>();
         // Load dữ liệu
-        news.add(new News(R.drawable.google,"this is title","hello world","by thien","00/00/0000"));
-        news.add(new News(R.drawable.google,"this is title","hello world","by thien","00/00/0000"));
-        news.add(new News(R.drawable.google,"this is title","hello world","by thien","00/00/0000"));
-        news.add(new News(R.drawable.google,"this is title","hello world","by thien","00/00/0000"));
-        news.add(new News(R.drawable.google,"this is title","hello world","by thien","00/00/0000"));
-        news.add(new News(R.drawable.google,"this is title","hello world","by thien","00/00/0000"));
-        news.add(new News(R.drawable.google,"this is title","hello world","by thien","00/00/0000"));
-        news.add(new News(R.drawable.google,"this is title","hello world","by thien","00/00/0000"));
-        news.add(new News(R.drawable.google,"this is title","hello world","by thien","00/00/0000"));
-        news.add(new News(R.drawable.google,"this is title","hello world","by thien","00/00/0000"));
-        news.add(new News(R.drawable.google,"this is title","hello world","by thien","00/00/0000"));
+        news.add(new News(R.drawable.google,"this is title","hello world","by thien",1));
+        news.add(new News(R.drawable.google,"this is title","hello world","by thien",2));
+        news.add(new News(R.drawable.google,"this is title","hello world","by thien",3));
+        news.add(new News(R.drawable.google,"this is title","hello world","by thien",4));
+        news.add(new News(R.drawable.google,"this is title","hello world","by thien",5));
+        news.add(new News(R.drawable.google,"this is title","hello world","by thien",1));
+        news.add(new News(R.drawable.google,"this is title","hello world","by thien",2));
+        news.add(new News(R.drawable.google,"this is title","hello world","by thien",3));
+        news.add(new News(R.drawable.google,"this is title","hello world","by thien",4));
+        news.add(new News(R.drawable.google,"this is title","hello world","by thien",5));
         NewContext_Adapter adapter = new NewContext_Adapter(news);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));

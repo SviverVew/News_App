@@ -15,60 +15,11 @@ import com.example.newsapp.adapter.NewContext_Adapter;
 import com.example.newsapp.testmodel.News;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link news_content_trending_Fragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class news_content_trending_Fragment extends Fragment {
-
-//    // TODO: Rename parameter arguments, choose names that match
-//    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-//    private static final String ARG_PARAM1 = "param1";
-//    private static final String ARG_PARAM2 = "param2";
-//
-//    // TODO: Rename and change types of parameters
-//    private String mParam1;
-//    private String mParam2;
-//
-//    public news_content_trending_Fragment() {
-//        // Required empty public constructor
-//    }
-//
-//    /**
-//     * Use this factory method to create a new instance of
-//     * this fragment using the provided parameters.
-//     *
-//     * @param param1 Parameter 1.
-//     * @param param2 Parameter 2.
-//     * @return A new instance of fragment news_content_trending_Fragment.
-//     */
-//    // TODO: Rename and change types and number of parameters
-//    public static news_content_trending_Fragment newInstance(String param1, String param2) {
-//        news_content_trending_Fragment fragment = new news_content_trending_Fragment();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
-//
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
-//    }
-//
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                             Bundle savedInstanceState) {
-//        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_news_content_trending_, container, false);
-//    }
     ArrayList<News> news_byview;
     RecyclerView recyclerView;
     @Override
@@ -78,17 +29,14 @@ public class news_content_trending_Fragment extends Fragment {
 
         news_byview = new ArrayList<News>();
         //add test data
-        news_byview.add(new News(R.drawable.google,"this is title","hello world","by thien","1"));
-        news_byview.add(new News(R.drawable.google,"this is title","hello world","by thien","1"));
-        news_byview.add(new News(R.drawable.google,"this is title","hello world","by thien","3"));
-        news_byview.add(new News(R.drawable.google,"this is title","hello world","by thien","4"));
-        news_byview.add(new News(R.drawable.google,"this is title","hello world","by thien","5"));
-        news_byview.add(new News(R.drawable.google,"this is title","hello world","by thien","00/00/0000"));
-        news_byview.add(new News(R.drawable.google,"this is title","hello world","by thien","00/00/0000"));
-        news_byview.add(new News(R.drawable.google,"this is title","hello world","by thien","00/00/0000"));
-        news_byview.add(new News(R.drawable.google,"this is title","hello world","by thien","00/00/0000"));
-        news_byview.add(new News(R.drawable.google,"this is title","hello world","by thien","00/00/0000"));
-        news_byview.add(new News(R.drawable.google,"this is title","hello world","by thien","00/00/0000"));
+        news_byview.add(new News(R.drawable.google,"Tổng Bí thư gửi thư chúc mừng Chủ tịch Đảng Nhân dân Campuchia Hunsen","hello world","by thien",1));
+        news_byview.add(new News(R.drawable.google,"this is title","hello world","by thien",4));
+        news_byview.add(new News(R.drawable.google,"this is title","hello world","by thien",3));
+        news_byview.add(new News(R.drawable.google,"this is title","hello world","by thien",2));
+        news_byview.add(new News(R.drawable.google,"this is title","hello world","by thien",5));
+        news_byview.add(new News(R.drawable.google,"Tổng Bí thư gửi thư chúc mừng Chủ tịch Đảng Nhân dân Campuchia Hunsen","hello world","by thien",9));
+        news_byview.add(new News(R.drawable.google,"this is title","hello world","by thien",8));
+        news_byview.sort(Comparator.comparingInt(News::getTime).reversed());
         NewContext_Adapter adapter = new NewContext_Adapter(news_byview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));

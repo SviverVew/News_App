@@ -83,7 +83,7 @@ public class NewContext_Adapter extends RecyclerView.Adapter<NewContext_Adapter.
         holder.image.setImageResource(news.getImage());
         holder.title.setText(news.getTitle());
         holder.user.setText(news.getUser());
-        holder.time.setText(news.getTime());
+        holder.time.setText(String.valueOf(news.getTime()));
     }
 
     @Override

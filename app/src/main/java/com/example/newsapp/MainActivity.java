@@ -6,12 +6,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
+import java.time.LocalTime;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.newsapp.adapter.NewContext_Adapter;
 import com.example.newsapp.admin.AdminFragment;
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Hello();
         // minh ne
         //cai loz me m
         //TEST
@@ -50,6 +53,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //TEST
+    }
+    void Hello(){
+        LocalTime time = LocalTime.now();
+        String text;
+        if(time.getHour()<12) text = "HELLO, GOOD MORNING";
+        else if(time.getHour()<17) text = "GOOD AFTERNOON USER, TIME TO READ";
+        else text="HAVE A NICE EVENING USER";
+        Toast toast = Toast.makeText(MainActivity.this,text,Toast.LENGTH_LONG);
+        toast.show();
     }
     //EVENT BOTTOMNAV
     private NavigationBarView.OnItemSelectedListener onItemSelectedListener(){
