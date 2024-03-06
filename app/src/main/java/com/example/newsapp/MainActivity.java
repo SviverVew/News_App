@@ -1,5 +1,7 @@
 package com.example.newsapp;
 
+import static com.example.newsapp.R.id.tabLayout;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -21,21 +23,30 @@ import com.example.newsapp.testmodel.News;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     Button btn;
     Fragment context;
+    TabLayout tabLayout;
     MaterialToolbar topmenu;
     BottomNavigationView bottomnav;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        tabLayout=findViewById(R.id.tabLayout);
+        tabLayout.addTab(tabLayout.newTab().setText("Nóng"));
+        tabLayout.addTab(tabLayout.newTab().setText("Tin mới"));
+        tabLayout.addTab(tabLayout.newTab().setText("Ngoại hạng anh"));
+        tabLayout.addTab(tabLayout.newTab().setText("Tình cảm"));
+        tabLayout.addTab(tabLayout.newTab().setText("Giải trí"));
+        tabLayout.addTab(tabLayout.newTab().setText("Sức khỏe"));
+        tabLayout.addTab(tabLayout.newTab().setText("Du lịch"));
+
         Hello();
-        // minh ne
-        //cai loz me m
         //TEST
         //FIND VIEW
         topmenu = findViewById(R.id.main_topmenu);

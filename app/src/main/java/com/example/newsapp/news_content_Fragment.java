@@ -19,6 +19,7 @@ public class news_content_Fragment extends Fragment {
     ArrayList<News> news;
     RecyclerView recyclerView;
     @Override
+    //test
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
