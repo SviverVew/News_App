@@ -9,12 +9,15 @@
         android:icon="@drawable/icon_news"
         app:showAsAction="always"/>
     <item
+<<<<<<< HEAD
         android:id="@+id/idvideo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/icon_video"
         android:title="Video" />
     <item
+=======
+>>>>>>> origin/mit
         android:id="@+id/idxuhuong"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,5 +28,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/icon_tienich"
+<<<<<<< HEAD
         android:title="Tiện ích" />
+=======
+        android:title="Quản lý"
+        android:visible="true"/>
+>>>>>>> origin/mit
 </menu>

@@ -2,14 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+<<<<<<< HEAD
         android:id="@+id/idsearch"
+=======
+        android:id="@+id/topmenu_search"
+>>>>>>> origin/mit
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="Search"
         android:icon="@drawable/icon_search"
         app:showAsAction="always"/>
     <item
+<<<<<<< HEAD
         android:id="@+id/idprofile"
+=======
+        android:id="@+id/topmenu_profile"
+>>>>>>> origin/mit
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/icon_pro"

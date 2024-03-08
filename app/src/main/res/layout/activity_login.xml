@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity"
+    android:orientation="vertical">
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/logo"
+        android:layout_gravity="center"
+        android:layout_marginTop="70dp"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_marginTop="80dp"
+        android:layout_weight="1">
+        <EditText
+            android:id="@+id/login_username"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="@drawable/edittext_border"
+            android:hint="Username hoặc số điện thoại"
+            android:textSize="15sp"
+            android:paddingLeft="20dp"/>
+        <EditText
+            android:id="@+id/login_password"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="@drawable/edittext_border"
+            android:hint="Mật khẩu"
+            android:inputType="textPassword"
+            android:textSize="15sp"
+            android:paddingLeft="20dp"
+            android:layout_marginTop="30dp"/>
+        <Button
+            android:id="@+id/login_submit"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_border"
+            android:text="Đăng nhập"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:text="HOẶC"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/login_loginwithGoogle"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="@drawable/edittext_border"
+            android:drawableLeft="@drawable/google"
+            android:text="ĐĂNG NHẬP VỚI GOOGLE"
+            android:paddingLeft="10dp"
+            android:paddingRight="40dp"
+            android:layout_marginTop="15dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chưa có tài khoản ?"
+                android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/login_CreateAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tạo tài khoản"
+                android:layout_marginLeft="5dp"
+                android:textColor="#3F51B5"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
