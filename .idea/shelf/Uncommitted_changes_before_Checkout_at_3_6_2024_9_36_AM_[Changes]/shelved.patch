@@ -1,0 +1,103 @@
+Index: app/src/main/java/com/example/newsapp/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.newsapp;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.os.Bundle;\r\nimport android.view.Menu;\r\nimport android.view.MenuItem;\r\n\r\nimport androidx.appcompat.widget.Toolbar;\r\nimport androidx.fragment.app.Fragment;\r\nimport androidx.fragment.app.FragmentTransaction;\r\n\r\nimport com.google.android.material.tabs.TabLayout;\r\n\r\npublic class MainActivity extends AppCompatActivity {\r\n    Toolbar myToolbar;\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_main);\r\n        myToolbar = findViewById(R.id.materialToolbarHome);\r\n        setSupportActionBar(myToolbar);\r\n\r\n\r\n        TabLayout tabLayout = findViewById(R.id.tabLayout);\r\n        tabLayout.addTab(tabLayout.newTab().setText(\"Nóng\"));\r\n        tabLayout.addTab(tabLayout.newTab().setText(\"Mới\"));\r\n        tabLayout.addTab(tabLayout.newTab().setText(\"Bóng đá VN\"));\r\n        tabLayout.addTab(tabLayout.newTab().setText(\"Bóng đá QT\"));\r\n        tabLayout.addTab(tabLayout.newTab().setText(\"Độc & Lạ\"));\r\n        tabLayout.addTab(tabLayout.newTab().setText(\"Tình yêu\"));\r\n        tabLayout.addTab(tabLayout.newTab().setText(\"Tình yêu\"));\r\n        tabLayout.addTab(tabLayout.newTab().setText(\"Giải trí\"));\r\n        tabLayout.addTab(tabLayout.newTab().setText(\"Thế giới\"));\r\n        tabLayout.addTab(tabLayout.newTab().setText(\"Pháp luật\"));\r\n        tabLayout.addTab(tabLayout.newTab().setText(\"Xe 360\"));\r\n        tabLayout.addTab(tabLayout.newTab().setText(\"Công nghệ\"));\r\n        tabLayout.addTab(tabLayout.newTab().setText(\"Ẩm thực\"));\r\n        tabLayout.addTab(tabLayout.newTab().setText(\"Làm đẹp\"));\r\n        tabLayout.addTab(tabLayout.newTab().setText(\"Sức khỏe\"));\r\n        tabLayout.addTab(tabLayout.newTab().setText(\"Du lịch\"));\r\n\r\n    }\r\n\r\n    @Override\r\n    public boolean onCreateOptionsMenu(Menu menu) {\r\n        getMenuInflater().inflate(R.menu.topmenu, menu);\r\n        return true;\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/newsapp/MainActivity.java b/app/src/main/java/com/example/newsapp/MainActivity.java
+--- a/app/src/main/java/com/example/newsapp/MainActivity.java	(revision 6cee403f56c9077a5742a8c83bf9dd4ffd34ed1e)
++++ b/app/src/main/java/com/example/newsapp/MainActivity.java	(date 1709692490252)
+@@ -2,7 +2,9 @@
+ 
+ import androidx.annotation.NonNull;
+ import androidx.appcompat.app.AppCompatActivity;
+-
++import androidx.fragment.app.Fragment;
++import androidx.fragment.app.FragmentManager;
++import androidx.fragment.app.FragmentTransaction;
+ import android.os.Bundle;
+ import android.view.Menu;
+ import android.view.MenuItem;
+@@ -40,7 +42,6 @@
+         tabLayout.addTab(tabLayout.newTab().setText("Làm đẹp"));
+         tabLayout.addTab(tabLayout.newTab().setText("Sức khỏe"));
+         tabLayout.addTab(tabLayout.newTab().setText("Du lịch"));
+-
+     }
+ 
+     @Override
+Index: app/src/main/res/layout/fragment_adapter_vertical.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_adapter_vertical.xml b/app/src/main/res/layout/fragment_adapter_vertical.xml
+new file mode 100644
+--- /dev/null	(date 1709656666314)
++++ b/app/src/main/res/layout/fragment_adapter_vertical.xml	(date 1709656666314)
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="utf-8"?>
++<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".fragments.news_fragment">
++
++    <androidx.recyclerview.widget.RecyclerView
++        android:id="@+id/recyclerViewNewBox"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent" />
++</FrameLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/item_layout_news_box.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/item_layout_news_box.xml b/app/src/main/res/layout/item_layout_news_box.xml
+new file mode 100644
+--- /dev/null	(date 1709654230479)
++++ b/app/src/main/res/layout/item_layout_news_box.xml	(date 1709654230479)
+@@ -0,0 +1,40 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="wrap_content">
++
++    <ImageView
++        android:id="@+id/imageViewThumb"
++        android:layout_width="200dp"
++        android:layout_height="70dp"
++        android:layout_weight="1"
++        tools:srcCompat="@android:drawable/ic_media_play" />
++
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:layout_weight="1"
++        android:orientation="vertical">
++
++        <TextView
++            android:id="@+id/textViewTitle"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:text="TextView" />
++
++        <TextView
++            android:id="@+id/textViewDescription"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:text="TextView" />
++
++        <TextView
++            android:id="@+id/textViewViewCount"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:text="TextView" />
++
++    </LinearLayout>
++</LinearLayout>
+\ No newline at end of file
