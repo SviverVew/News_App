@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".userlogin" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:context=".userlogin">
+
+        <Button
+            android:id="@+id/btnback"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/txtcanhan"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Cá nhân"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imgavtuser"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:src="@drawable/avt" />
+
+        <TextView
+            android:id="@+id/txtdangnhap"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_weight="1"
+            android:gravity="center|left"
+            android:text="Đăng Nhập"
+            android:layout_marginLeft="10dp"
+            android:textSize="34sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/btnlichsu"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/save"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/txt1"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:gravity="center|left"
+            android:text="Đang theo dõi" />
+
+        <TextView
+            android:id="@+id/btn1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="50dp"
+            android:background="@drawable/tick"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/txt2"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:gravity="center|right"
+            android:text="Đã đánh dấu" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/btn2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/time"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/txt3"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:gravity="center|left"
+            android:text="Lịch sử" />
+
+        <TextView
+            android:id="@+id/btn3"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="40dp"
+            android:background="@drawable/khac"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/txt4"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="Khác" />
+    </LinearLayout>
+</LinearLayout>
