@@ -9,15 +9,7 @@ public class News implements Serializable {
     private String title;
     private String context;
     private String user;
-    private String time;
-
-    public News(int image, String title, String context, String user, String time) {
-        this.image = image;
-        this.title = title;
-        this.context = context;
-        this.user = user;
-        this.time = time;
-    }
+    private int time;
 
     public int getImage() {
         return image;
@@ -51,11 +43,19 @@ public class News implements Serializable {
         this.user = user;
     }
 
-    public String getTime() {
+    public int getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(int time) {
+        this.time = time;
+    }
+
+    public News(int image, String title, String context, String user, int time) {
+        this.image = image;
+        this.title = title;
+        this.context = context;
+        this.user = user;
         this.time = time;
     }
 }

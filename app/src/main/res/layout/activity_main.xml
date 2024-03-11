@@ -19,15 +19,23 @@
         app:navigationIconTint="@color/black"
         app:titleCentered="true"
         app:titleTextAppearance="@style/TextAppearance.AppCompat.Body2">
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabGravity="fill"
+            app:tabIndicatorGravity="bottom"
+            app:tabIndicatorHeight="0dp"
+            app:tabMode="scrollable"/>
     </com.google.android.material.appbar.MaterialToolbar>
     <!--CONTEXT-->
+    <!--BOTTOM NAVIGATION -->
     <FrameLayout
         android:id="@+id/main_context"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
-    </FrameLayout>
-    <!--BOTTOM NAVIGATION -->
+        android:layout_weight="1"></FrameLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/main_bottommenu"
         android:layout_width="match_parent"
