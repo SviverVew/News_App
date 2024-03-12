@@ -29,14 +29,14 @@ public class news_content_trending_Fragment extends Fragment {
 
         news_byview = new ArrayList<News>();
         //add test data
-        news_byview.add(new News(R.drawable.google,"Tổng Bí thư gửi thư chúc mừng Chủ tịch Đảng Nhân dân Campuchia Hunsen","hello world","by thien",1));
-        news_byview.add(new News(R.drawable.google,"this is title","hello world","by thien",4));
-        news_byview.add(new News(R.drawable.google,"this is title","hello world","by thien",3));
-        news_byview.add(new News(R.drawable.google,"this is title","hello world","by thien",2));
-        news_byview.add(new News(R.drawable.google,"this is title","hello world","by thien",5));
-        news_byview.add(new News(R.drawable.google,"Tổng Bí thư gửi thư chúc mừng Chủ tịch Đảng Nhân dân Campuchia Hunsen","hello world","by thien",9));
-        news_byview.add(new News(R.drawable.google,"this is title","hello world","by thien",8));
-        news_byview.sort(Comparator.comparingInt(News::getTime).reversed());
+//        news_byview.add(new News(R.drawable.google,"Tổng Bí thư gửi thư chúc mừng Chủ tịch Đảng Nhân dân Campuchia Hunsen","hello world","by thien",1));
+//        news_byview.add(new News(R.drawable.google,"this is title","hello world","by thien",4));
+//        news_byview.add(new News(R.drawable.google,"this is title","hello world","by thien",3));
+//        news_byview.add(new News(R.drawable.google,"this is title","hello world","by thien",2));
+//        news_byview.add(new News(R.drawable.google,"this is title","hello world","by thien",5));
+//        news_byview.add(new News(R.drawable.google,"Tổng Bí thư gửi thư chúc mừng Chủ tịch Đảng Nhân dân Campuchia Hunsen","hello world","by thien",9));
+//        news_byview.add(new News(R.drawable.google,"this is title","hello world","by thien",8));
+//        news_byview.sort(Comparator.comparingInt(News::getTime).reversed());
         NewContext_Adapter adapter = new NewContext_Adapter(news_byview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));

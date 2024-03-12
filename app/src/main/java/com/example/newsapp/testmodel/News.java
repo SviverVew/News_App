@@ -9,7 +9,26 @@ public class News implements Serializable {
     private String title;
     private String context;
     private String user;
-    private int time;
+    private String time;
+    private String category;
+    private int view;
+
+    public int getView() {
+        return view;
+    }
+
+    public void setView(int view) {
+        this.view = view;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
 
     public int getImage() {
         return image;
@@ -43,19 +62,22 @@ public class News implements Serializable {
         this.user = user;
     }
 
-    public int getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(int time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
-    public News(int image, String title, String context, String user, int time) {
+    public News(int image, String title, String context, String user) {
         this.image = image;
         this.title = title;
         this.context = context;
         this.user = user;
-        this.time = time;
+//        this.time = time;
+//        this.category = category;
+//        this.view = view;
     }
+    public  News(){}
 }

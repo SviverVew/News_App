@@ -55,7 +55,7 @@
             android:textSize="15sp" />
 
         <Button
-            android:id="@+id/login_loginwithGoogle"
+            android:id="@+id/ButtonLoginGoogle"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:background="@drawable/edittext_border"

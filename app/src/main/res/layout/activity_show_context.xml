@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Show_Context_Activity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/show_news_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="BY USER"
+            app:titleCentered="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/show_news_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="THIS IS TITLE OF THIS CONTEXT"
+                android:textColor="@color/black"
+                android:textSize="30sp">
+            </TextView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/show_news_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="this is new's category"
+                    android:textSize="15sp"
+                    android:layout_weight="1">
+                </TextView>
+                <TextView
+                    android:id="@+id/show_news_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="this is view"
+                    android:textSize="15sp">
+                </TextView>
+            </LinearLayout>
+            <TextView
+                android:id="@+id/show_news_context"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="THIS IS CONTEXT"
+                android:textSize="30sp"
+                android:textColor="@color/black"></TextView>
+            <TextView
+                android:id="@+id/show_news_datecreated"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="this is date created"
+                android:textSize="15sp">
+            </TextView>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
