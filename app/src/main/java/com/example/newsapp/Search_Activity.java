@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -18,6 +19,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.newsapp.adapter.NewContext_Adapter;
@@ -38,7 +40,7 @@ public class Search_Activity extends AppCompatActivity {
     RecyclerView recyclerView;
     FirebaseFirestore db;
     MaterialToolbar toolbar;
-
+    Button btnClose;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +48,7 @@ public class Search_Activity extends AppCompatActivity {
         toolbar = findViewById(R.id.main_search);
         setSupportActionBar(toolbar);
         setTitle("");
+        btnClose = findViewById(R.id.btnClose);
         recyclerView = findViewById(R.id.rcvnews);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -66,6 +69,13 @@ public class Search_Activity extends AppCompatActivity {
             public boolean onQueryTextChange(String newText) {
                 news.getFilter().filter(newText);
                 return false;
+            }
+        });
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Search_Activity.this, MainActivity.class); // Thay NextActivity bằng tên của hoạt động mà bạn muốn chuyển đến
+                startActivity(intent);
             }
         });
     }

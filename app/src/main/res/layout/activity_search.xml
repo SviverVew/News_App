@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context=".Search_Activity">
 
+
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/main_search"
         android:layout_width="match_parent"
@@ -17,13 +18,22 @@
         app:navigationIconTint="@color/black"
         app:titleCentered="true"
         app:titleTextAppearance="@style/TextAppearance.AppCompat.Body2">
-        <androidx.appcompat.widget.SearchView
-            android:layout_width="match_parent"
-            android:id="@+id/mnsearches"
-            app:iconifiedByDefault="false"
-            android:layout_height="wrap_content"/>
-    </com.google.android.material.appbar.MaterialToolbar>
 
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/mnsearches"
+            android:layout_width="340dp"
+            android:layout_height="40dp"
+            android:background="@drawable/search_shape"
+            app:iconifiedByDefault="false" />
+
+        <Button
+            android:id="@+id/btnClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:text="Đóng"
+            android:textAllCaps="false" />
+    </com.google.android.material.appbar.MaterialToolbar>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvnews"
