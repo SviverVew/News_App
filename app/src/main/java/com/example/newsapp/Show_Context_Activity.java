@@ -7,16 +7,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.newsapp.testmodel.News;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.squareup.picasso.Picasso;
 
 public class Show_Context_Activity extends AppCompatActivity {
     Intent intent;
     MaterialToolbar toolbar;
-    TextView title, context, date;
+    TextView title, context, date, view, category;
+    ImageView image;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +28,9 @@ public class Show_Context_Activity extends AppCompatActivity {
         title = findViewById(R.id.show_news_title);
         context = findViewById(R.id.show_news_context);
         date = findViewById(R.id.show_news_datecreated);
+        view = findViewById(R.id.show_news_view);
+        image = findViewById(R.id.shows_news_image);
+        category = findViewById(R.id.show_news_category);
         toolbar = findViewById(R.id.show_news_toolbar);
         //GET DATA TỪ Intent
         intent = getIntent();
@@ -33,6 +39,9 @@ public class Show_Context_Activity extends AppCompatActivity {
             toolbar.setTitle(news.getUser().toString());
             title.setText(news.getTitle().toString());
             context.setText(news.getContext().toString());
+            view.setText(news.getView().toString() + " view");
+            category.setText("Chuyên mục: " + news.getCategory());
+            Picasso.get().load(news.getImage()).into(image);
 //            date.setText(news.getTime().toString() );
         }
         else {

@@ -49,6 +49,10 @@
                     android:textSize="15sp">
                 </TextView>
             </LinearLayout>
+            <ImageView
+                android:id="@+id/shows_news_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/show_news_context"
                 android:layout_width="match_parent"
