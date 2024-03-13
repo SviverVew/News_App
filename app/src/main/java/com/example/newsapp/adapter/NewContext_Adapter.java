@@ -20,6 +20,7 @@ import com.example.newsapp.LoginActivity;
 import com.example.newsapp.R;
 import com.example.newsapp.Show_Context_Activity;
 import com.example.newsapp.testmodel.News;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -48,18 +49,17 @@ public class NewContext_Adapter extends RecyclerView.Adapter<NewContext_Adapter.
     @Override
     public void onBindViewHolder(@NonNull NewContext_Adapter.ViewHolder holder, int position) {
         News news = arr_News.get(position);
-        holder.image.setImageResource(news.getImage());
         holder.title.setText(news.getTitle());
         holder.user.setText(news.getUser());
-        holder.time.setText(String.valueOf(news.getTime()));
+        Picasso.get().load(news.getImage()).into(holder.image);
+//        holder.context.setText(news.getContext());
+//        holder.time.setText(String.valueOf(news.getTime()));
 //        holder.category.setText(news.getCategory());
 //        holder.view.setText(news.getView());
-//       String res = news.getUser().toString();
         //add click listener
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Toast.makeText(v.getContext(),"mày đang chọn bài báo số " + res,Toast.LENGTH_LONG).show();
                 Intent i = new Intent(v.getContext(), Show_Context_Activity.class);
                 i.putExtra("data", news);
                 v.getContext().startActivity(i);
@@ -75,16 +75,16 @@ public class NewContext_Adapter extends RecyclerView.Adapter<NewContext_Adapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView image;
-        TextView title, user, time, view, category;
+        TextView title, user, time, view, category, context;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
             image = itemView.findViewById(R.id.item_news_image);
             title = itemView.findViewById(R.id.item_main_title);
             user = itemView.findViewById(R.id.item_main_poster);
-            time = itemView.findViewById(R.id.item_main_time);
+//          time = itemView.findViewById(R.id.item_main_time);
             view = itemView.findViewById(R.id.show_news_view);
-            category = itemView.findViewById(R.id.show_news_category);
+//          category = itemView.findViewById(R.id.show_news_category);
         }
     }
 }
