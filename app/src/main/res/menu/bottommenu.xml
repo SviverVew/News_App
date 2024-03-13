@@ -18,7 +18,7 @@
         android:id="@+id/idtienich"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:icon="@drawable/icon_tienich"
+        android:icon="@drawable/baseline_account"
         android:title="Quản lý"
         android:visible="true"/>
 </menu>

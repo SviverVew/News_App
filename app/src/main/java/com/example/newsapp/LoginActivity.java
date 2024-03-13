@@ -3,6 +3,7 @@ package com.example.newsapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,22 +22,29 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
-    TextView createAcc;
-    EditText Login_Pass, Login_UserName;
+  TextView createAcc;
+     EditText Login_Pass, Login_UserName;
     Button Submit;
+    ProgressBar progressBar;
+
     private FirebaseAuth Auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        progressBar = findViewById(R.id.progressBarLogin);
         createAcc = findViewById(R.id.login_CreateAccount);
         Auth=FirebaseAuth.getInstance();
         Login_Pass=findViewById(R.id.login_password);
         Login_UserName=findViewById(R.id.login_username);
         Submit= findViewById(R.id.login_submit);
+        progressBar.setVisibility(View.INVISIBLE);
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+
+
                 login();
             }
         });
@@ -54,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
         UserName=Login_UserName.getText().toString();
         PassWord=Login_Pass.getText().toString();
         if(TextUtils.isEmpty(UserName)){
-            Toast.makeText(this,"Vui lòng nhập Email hoặc Số điện thoại!!",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Vui lòng nhập Email!!",Toast.LENGTH_SHORT).show();
         return;
         }
         if(TextUtils.isEmpty(PassWord)){
@@ -65,11 +74,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+                    progressBar.setVisibility(View.VISIBLE);
                     Toast.makeText(getApplicationContext(),"Đăng nhập thành công!",Toast.LENGTH_SHORT).show();
                 Intent i=new Intent(LoginActivity.this,MainActivity.class);
                 startActivity(i);
                 }else{
-                    Toast.makeText(getApplicationContext(),"Email , Số điện thoại hoặc mật khẩu sai!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Email hoặc mật khẩu sai!",Toast.LENGTH_SHORT).show();
                 }
             }
         });

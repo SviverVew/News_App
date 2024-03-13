@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         bottomnav = findViewById(R.id.main_bottommenu);
         bottomnav.setOnItemSelectedListener(onItemSelectedListener());
         ChangeFragment(new news_content_Fragment());
-        topmenu.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+      /*  topmenu.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if(item.getItemId()==R.id.topmenu_profile){
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return false;
             }
-        });
+        });*/
         //TEST
     }
 

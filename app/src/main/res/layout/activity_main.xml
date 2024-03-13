@@ -7,6 +7,8 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
     <!--TOP MENU -->
+    <!--CONTEXT-->
+    <!--BOTTOM NAVIGATION -->
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/main_topmenu"
         android:layout_width="match_parent"
@@ -19,6 +21,7 @@
         app:navigationIconTint="@color/black"
         app:titleCentered="true"
         app:titleTextAppearance="@style/TextAppearance.AppCompat.Body2">
+
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
@@ -26,10 +29,9 @@
             app:tabGravity="fill"
             app:tabIndicatorGravity="bottom"
             app:tabIndicatorHeight="0dp"
-            app:tabMode="scrollable"/>
+            app:tabMode="scrollable" />
     </com.google.android.material.appbar.MaterialToolbar>
-    <!--CONTEXT-->
-    <!--BOTTOM NAVIGATION -->
+
     <FrameLayout
         android:id="@+id/main_context"
         android:layout_width="match_parent"
