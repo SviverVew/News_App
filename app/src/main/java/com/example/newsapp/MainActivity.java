@@ -99,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
     }
+    //t
     //CHUYEN DOI INTENT
     void ChangeIntent(Activity current, Class<?> next){
         Intent intent = new Intent(current, next);
