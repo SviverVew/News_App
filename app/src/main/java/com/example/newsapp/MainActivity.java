@@ -3,13 +3,17 @@ package com.example.newsapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 
 import com.example.newsapp.admin.AdminFragment;
@@ -24,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     TabLayout tabLayout;
     MaterialToolbar topmenu;
     BottomNavigationView bottomnav;
+    DrawerLayout drawerLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         //FIND VIEW
         topmenu = findViewById(R.id.main_topmenu);
         bottomnav = findViewById(R.id.main_bottommenu);
+        drawerLayout=findViewById(R.id.drawer_layout);
         bottomnav.setOnItemSelectedListener(onItemSelectedListener());
         ChangeFragment(new news_content_Fragment());
        topmenu.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -58,7 +65,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //TEST
+        Button navBtn=findViewById(R.id.NavButton);
+        navBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                }
+                else {
+                    drawerLayout.openDrawer(GravityCompat.START);
+                }
+            }
+        });
     }
+    //navigation
+
 
     //EVENT BOTTOMNAV
     private NavigationBarView.OnItemSelectedListener onItemSelectedListener(){
