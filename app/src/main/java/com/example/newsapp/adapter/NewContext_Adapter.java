@@ -1,6 +1,11 @@
 package com.example.newsapp.adapter;
 
+import static android.content.ContentValues.TAG;
+
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,23 +13,26 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.newsapp.LoginActivity;
 import com.example.newsapp.R;
+import com.example.newsapp.Show_Context_Activity;
 import com.example.newsapp.testmodel.News;
+import com.squareup.picasso.Picasso;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 public class NewContext_Adapter extends RecyclerView.Adapter<NewContext_Adapter.ViewHolder> implements Filterable {
-    private List<News> arr_News;
-    private List<News> getArr_Newsold;
-    public NewContext_Adapter(List<News> arr_News) {
+    private ArrayList<News> arr_News;
+    private ArrayList<News> getArr_Newsold;
 
+    public NewContext_Adapter(ArrayList<News> arr_News) {
         this.arr_News = arr_News;
-        this.getArr_Newsold = arr_News;
+        this.getArr_Newsold = new ArrayList<>(arr_News);
     }
 
     @NonNull
@@ -37,10 +45,23 @@ public class NewContext_Adapter extends RecyclerView.Adapter<NewContext_Adapter.
     @Override
     public void onBindViewHolder(@NonNull NewContext_Adapter.ViewHolder holder, int position) {
         News news = arr_News.get(position);
-        holder.image.setImageResource(news.getImage());
         holder.title.setText(news.getTitle());
         holder.user.setText(news.getUser());
-        holder.time.setText(String.valueOf(news.getTime()));
+        Picasso.get().load(news.getImage()).into(holder.image);
+//        holder.context.setText(news.getContext());
+//        holder.time.setText(String.valueOf(news.getTime()));
+//        holder.category.setText(news.getCategory());
+//        holder.view.setText(news.getView());
+        //add click listener
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), Show_Context_Activity.class);
+                i.putExtra("data", news);
+                v.getContext().startActivity(i);
+                Log.d(TAG, "onClick: " + news.getContext());
+            }
+        });
     }
 
     @Override
@@ -67,19 +88,18 @@ public class NewContext_Adapter extends RecyclerView.Adapter<NewContext_Adapter.
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
                 String strSearch = constraint.toString();
-                if(strSearch.isEmpty())
-                {
-                    arr_News = getArr_Newsold;
-                }
-                else {
+                if (strSearch.isEmpty()) {
+                    arr_News.clear();
+                    arr_News.addAll(getArr_Newsold);
+                } else {
                     List<News> arrayList = new ArrayList<>();
-                    for (News news : getArr_Newsold){
-                        if(news.getTitle().toLowerCase().contains(strSearch.toLowerCase()))
-                        {
+                    for (News news : getArr_Newsold) {
+                        if (news.getTitle().toLowerCase().contains(strSearch.toLowerCase())) {
                             arrayList.add(news);
                         }
                     }
-                    arr_News = arrayList;
+                    arr_News.clear();
+                    arr_News.addAll(arrayList);
                 }
                 FilterResults filterResults = new FilterResults();
                 filterResults.values = arr_News;
@@ -88,7 +108,7 @@ public class NewContext_Adapter extends RecyclerView.Adapter<NewContext_Adapter.
 
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
-                arr_News = (List<News>) results.values;
+                arr_News = (ArrayList<News>) results.values;
                 notifyDataSetChanged();
             }
         };
