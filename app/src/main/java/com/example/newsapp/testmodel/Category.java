@@ -34,8 +34,4 @@ public class Category {
         this.ID = ID;
         CateName = cateName;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> origin/master
