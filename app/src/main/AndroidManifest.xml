@@ -13,14 +13,33 @@
         android:theme="@style/Theme.NewsApp"
         tools:targetApi="31">
         <activity
+<<<<<<< HEAD
             android:name=".Search_Activity"
+=======
+            android:name=".admin.Show_News_Info_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".List_News_Activity"
+>>>>>>> ecc7a070c6805ad8d309bd48bed8aa0203aca9e7
             android:exported="false" />
         <activity
             android:name=".Show_Context_Activity"
             android:exported="false" />
+<<<<<<< HEAD
         <activity android:name=".MainActivity" />
+=======
+        <activity
+            android:name=".admin.Add_News_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".ChooseLogin"
+            android:exported="false" />
+>>>>>>> ecc7a070c6805ad8d309bd48bed8aa0203aca9e7
         <activity
             android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

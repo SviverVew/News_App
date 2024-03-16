@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import java.time.LocalTime;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -35,10 +36,15 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.tabs.TabLayout;
+<<<<<<< HEAD
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+=======
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+>>>>>>> ecc7a070c6805ad8d309bd48bed8aa0203aca9e7
 
 import java.util.ArrayList;
 import java.util.List;
@@ -178,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
         };
     }
     //CHUYEN DOI INTENT
-    void ChangeIntent(Activity current, Class<?> next){
+    public void ChangeIntent(Activity current, Class<?> next){
         Intent intent = new Intent(current, next);
         current.startActivity(intent);
     }
@@ -189,4 +195,5 @@ public class MainActivity extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.commit();
     }
+    //set tab layout
 }

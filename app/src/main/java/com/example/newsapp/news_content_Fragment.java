@@ -98,6 +98,7 @@ public class news_content_Fragment extends Fragment {
                 });
     }
     private String getCate(String id, News news){
+<<<<<<< HEAD
         db.collection("category").document(id)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -107,6 +108,17 @@ public class news_content_Fragment extends Fragment {
                     }
                 });
         return news.getCategory();
+=======
+       db.collection("category").document(id)
+               .get()
+               .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                   @Override
+                   public void onSuccess(DocumentSnapshot documentSnapshot) {
+                       news.setCategory(documentSnapshot.getString("cateName"));
+                   }
+               });
+       return news.getCategory();
+>>>>>>> ecc7a070c6805ad8d309bd48bed8aa0203aca9e7
     }
     //tao phương thức trừu tượng để các lớp khác có thể dùng
 }

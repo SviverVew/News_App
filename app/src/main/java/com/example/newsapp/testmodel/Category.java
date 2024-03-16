@@ -34,4 +34,8 @@ public class Category {
         this.ID = ID;
         CateName = cateName;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> ecc7a070c6805ad8d309bd48bed8aa0203aca9e7

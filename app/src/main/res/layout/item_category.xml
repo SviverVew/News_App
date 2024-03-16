@@ -6,4 +6,8 @@
     android:text="YOUR CATEGORY NAME"
     android:gravity="center"
     android:textColor="@color/black"
+<<<<<<< HEAD
     android:textSize="20sp"/>
+=======
+    android:textSize="20sp"/>
+>>>>>>> ecc7a070c6805ad8d309bd48bed8aa0203aca9e7
