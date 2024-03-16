@@ -6,4 +6,8 @@
     android:text="YOUR CATEGORY NAME"
     android:gravity="center"
     android:textColor="@color/black"
+<<<<<<< HEAD
     android:textSize="20sp"/>
+=======
+    android:textSize="20sp"/>
+>>>>>>> origin/master

@@ -13,6 +13,13 @@
         android:src="@drawable/logo"
         android:layout_gravity="center"
         android:layout_marginTop="70dp"/>
+
+    <ProgressBar
+        android:id="@+id/progressBarSignUp"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,23 +27,16 @@
         android:layout_gravity="center"
         android:layout_marginTop="60dp"
         android:layout_weight="1">
+
         <EditText
             android:id="@+id/signup_Username"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:background="@drawable/edittext_border"
-            android:hint="Username"
-            android:textSize="15sp"
-            android:paddingLeft="20dp"/>
-        <EditText
-            android:id="@+id/signup_UserPhone"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:background="@drawable/edittext_border"
-            android:hint="Số điện thoại"
-            android:textSize="15sp"
+            android:hint="Nhập Email"
             android:paddingLeft="20dp"
-            android:layout_marginTop="30dp"/>
+            android:textSize="15sp" />
+
         <EditText
             android:id="@+id/signup_Password"
             android:layout_width="300dp"

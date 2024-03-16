@@ -2,6 +2,7 @@ package com.example.newsapp.adapter;
 
 import static android.content.ContentValues.TAG;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -10,15 +11,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.newsapp.LoginActivity;
 import com.example.newsapp.R;
 import com.example.newsapp.Show_Context_Activity;
-import com.example.newsapp.admin.Show_News_Info_Activity;
 import com.example.newsapp.testmodel.News;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -47,25 +48,22 @@ public class NewContext_Adapter extends RecyclerView.Adapter<NewContext_Adapter.
     @Override
     public void onBindViewHolder(@NonNull NewContext_Adapter.ViewHolder holder, int position) {
         News news = arr_News.get(position);
+        holder.image.setImageResource(news.getImage());
         holder.title.setText(news.getTitle());
         holder.user.setText(news.getUser());
-        holder.time.setText(news.getTime());
-        Picasso.get().load(news.getImage()).into(holder.image);
-        //add click listener on selected item, intent will send a data of object news
+        holder.time.setText(String.valueOf(news.getTime()));
+//        holder.category.setText(news.getCategory());
+//        holder.view.setText(news.getView());
+//       String res = news.getUser().toString();
+        //add click listener
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!v.getContext().getClass().getName().equals("com.example.newsapp.List_News_Activity")){
-                    Intent i = new Intent(v.getContext(), Show_Context_Activity.class);
-                    i.putExtra("data", news);
-                    v.getContext().startActivity(i);
-                    Log.d(TAG, "onClick: " + v.getContext().getClass().getName());
-                }
-                else{
-                    Intent i = new Intent(v.getContext(), Show_News_Info_Activity.class);
-                    i.putExtra("newsinfo", news);
-                    v.getContext().startActivity(i);
-                }
+//                Toast.makeText(v.getContext(),"mày đang chọn bài báo số " + res,Toast.LENGTH_LONG).show();
+                Intent i = new Intent(v.getContext(), Show_Context_Activity.class);
+                i.putExtra("data", news);
+                v.getContext().startActivity(i);
+                Log.d(TAG, "onClick: " + news.getContext());
             }
         });
     }
@@ -77,7 +75,7 @@ public class NewContext_Adapter extends RecyclerView.Adapter<NewContext_Adapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView image;
-        TextView title, user, time;
+        TextView title, user, time, view, category;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
@@ -85,6 +83,8 @@ public class NewContext_Adapter extends RecyclerView.Adapter<NewContext_Adapter.
             title = itemView.findViewById(R.id.item_main_title);
             user = itemView.findViewById(R.id.item_main_poster);
             time = itemView.findViewById(R.id.item_main_time);
+            view = itemView.findViewById(R.id.show_news_view);
+            category = itemView.findViewById(R.id.show_news_category);
         }
     }
 }

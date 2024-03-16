@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,29 +21,22 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import com.example.newsapp.adapter.NewContext_Adapter;
 import com.example.newsapp.testmodel.News;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import org.checkerframework.checker.units.qual.N;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class news_content_Fragment extends Fragment {
-    private ArrayList<News> news;
-    private RecyclerView recyclerView;
-    private FirebaseFirestore db;
-    private CollectionReference refer;
+    ArrayList<News> news;
+    RecyclerView recyclerView;
+    FirebaseFirestore db;
     @Override
     //test
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,17 +45,15 @@ public class news_content_Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_news_content_, container, false);
         // Tìm kiếm RecyclerView trong layout
         recyclerView = view.findViewById(R.id.main_context_view);
-        news = new ArrayList<News>();
 
-        //tham chieu den collection category
-        db = FirebaseFirestore.getInstance();
-        refer = db.collection("category");
+        news = new ArrayList<News>();
         // Load dữ liệu
         getDataformFireStore(news);
         // Return view
         return view;
     }
     void getDataformFireStore(ArrayList<News> news1) {
+        db = FirebaseFirestore.getInstance();
         db.collection("news")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -75,16 +65,12 @@ public class news_content_Fragment extends Fragment {
                                 Map<String, Object> data = document.getData();
                                 //Tạo obj news
                                 News objnews = new News();
-                                String uri = document.get("news_imgURI").toString();
-                                Log.d(TAG, "onComplete: the document's image: " + uri);
-                                String URL = "https://firebasestorage.googleapis.com/v0/b/newsdb-e0729.appspot.com/o/image%2F" + uri +  "?alt=media";
-                                objnews.setImage(URL);
+                                objnews.setImage(R.drawable.google);
                                 objnews.setTitle(data.get("news_Title").toString());
                                 objnews.setContext(data.get("news_Context").toString());
                                 objnews.setUser(data.get("news_ID").toString());
-                                objnews.setTime(data.get("news_time").toString());
-                                objnews.setView(data.get("news_View").toString());
-                                objnews.setCategory(getCate(data.get("news_cate").toString(), objnews));
+//                                objnews.setTime(data.get("news_time").toString());
+//                                objnews.setView(Integer.parseInt(data.get("news_View").toString()));
                                 news1.add(objnews);
                             }
                             NewContext_Adapter adapter = new NewContext_Adapter(news);
@@ -97,16 +83,7 @@ public class news_content_Fragment extends Fragment {
                     }
                 });
     }
-    private String getCate(String id, News news){
-       db.collection("category").document(id)
-               .get()
-               .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                   @Override
-                   public void onSuccess(DocumentSnapshot documentSnapshot) {
-                       news.setCategory(documentSnapshot.getString("cateName"));
-                   }
-               });
-       return news.getCategory();
-    }
-    //tao phương thức trừu tượng để các lớp khác có thể dùng
+//    private String getCate(int id){
+//
+//    }
 }

@@ -28,7 +28,9 @@
                 android:layout_height="wrap_content"
                 android:text="THIS IS TITLE OF THIS CONTEXT"
                 android:textColor="@color/black"
-                android:textSize="30sp">
+                android:textSize="30sp"
+                android:layout_margin="10dp"
+                android:textStyle="bold">
             </TextView>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -39,6 +41,7 @@
                     android:layout_height="wrap_content"
                     android:text="this is new's category"
                     android:textSize="15sp"
+                    android:layout_marginLeft="20dp"
                     android:layout_weight="1">
                 </TextView>
                 <TextView
@@ -46,7 +49,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="this is view"
-                    android:textSize="15sp">
+                    android:textSize="15sp"
+                    android:layout_marginRight="20dp"
+                    android:paddingLeft="10dp"
+                    android:layout_marginLeft="20dp">
                 </TextView>
             </LinearLayout>
             <ImageView
@@ -58,13 +64,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="THIS IS CONTEXT"
-                android:textSize="30sp"
+                android:textSize="20sp"
+                android:layout_margin="10dp"
                 android:textColor="@color/black"></TextView>
             <TextView
                 android:id="@+id/show_news_datecreated"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="this is date created"
+                android:layout_margin="30dp"
                 android:textSize="15sp">
             </TextView>
         </LinearLayout>

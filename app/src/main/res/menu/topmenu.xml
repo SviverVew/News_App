@@ -8,11 +8,4 @@
         android:title="Search"
         android:icon="@drawable/icon_search"
         app:showAsAction="always"/>
-    <item
-        android:id="@+id/topmenu_profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:icon="@drawable/icon_pro"
-        android:title="Profile"
-        app:showAsAction="always"/>
 </menu>
