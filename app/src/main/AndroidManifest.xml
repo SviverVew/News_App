@@ -15,11 +15,16 @@
         <activity
             android:name=".Show_Context_Activity"
             android:exported="false" />
-
+        <activity android:name=".Search_Activity"
+            android:exported="false"/>
         <activity
-            android:name=".ChooseLogin"
+            android:name=".List_News_Activity"
             android:exported="false" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".admin.Add_News_Activity"
+            android:exported="false" />
         <activity
             android:name=".LoginActivity"
             android:exported="true">

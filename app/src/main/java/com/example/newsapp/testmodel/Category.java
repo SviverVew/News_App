@@ -1,3 +1,4 @@
+
 package com.example.newsapp.testmodel;
 
 import androidx.annotation.NonNull;

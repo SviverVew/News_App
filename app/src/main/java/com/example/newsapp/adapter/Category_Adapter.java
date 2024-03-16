@@ -63,8 +63,4 @@ public class Category_Adapter extends ArrayAdapter<Category> {
         }
         return convertView;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> origin/master

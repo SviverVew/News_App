@@ -91,17 +91,10 @@ public class Add_News_Activity extends AppCompatActivity {
         });
         //Choose IMAGE from gallery
         chooseIMG.setOnClickListener(new View.OnClickListener() {
-<<<<<<< HEAD
-           @Override
-            public void onClick(View v) {
-                selectIMG();
-           }
-=======
             @Override
             public void onClick(View v) {
                 selectIMG();
             }
->>>>>>> origin/master
         });
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,11 +102,7 @@ public class Add_News_Activity extends AppCompatActivity {
                 if(checkEditText()==true) {
                     upLoadFiletoDB();
                 }
-<<<<<<< HEAD
-           }
-=======
             }
->>>>>>> origin/master
         });
     }
     boolean checkEditText() {
@@ -141,20 +130,6 @@ public class Add_News_Activity extends AppCompatActivity {
     private void uploadIMG(String filename){
         storageReference = FirebaseStorage.getInstance().getReference("image/" + filename);
         storageReference.putFile(uri)
-<<<<<<< HEAD
-               .addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                   @Override
-                   public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                       Toast.makeText(Add_News_Activity.this, "add complete", Toast.LENGTH_LONG).show();
-                   }
-               })
-               .addOnFailureListener(new OnFailureListener() {
-                   @Override
-                   public void onFailure(@NonNull Exception e) {
-                       Toast.makeText(Add_News_Activity.this, "add failed", Toast.LENGTH_LONG).show();
-                   }
-               });
-=======
                 .addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
@@ -167,7 +142,6 @@ public class Add_News_Activity extends AppCompatActivity {
                         Toast.makeText(Add_News_Activity.this, "add failed", Toast.LENGTH_LONG).show();
                     }
                 });
->>>>>>> origin/master
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -197,22 +171,6 @@ public class Add_News_Activity extends AppCompatActivity {
                     public void onSuccess(DocumentReference documentReference) {
                         String documentId = documentReference.getId();
                         db.collection("news").document(documentId)
-<<<<<<< HEAD
-                                        .update("news_ID", documentId,
-                                                "news_imgURI", documentId+".jpg")
-                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                    @Override
-                                                    public void onSuccess(Void unused) {
-                                                        uploadIMG(documentId+".jpg");
-                                                    }
-                                                })
-                                                 .addOnFailureListener(new OnFailureListener() {
-                                                   @Override
-                                                   public void onFailure(@NonNull Exception e) {
-                                                       Toast.makeText(Add_News_Activity.this, "update failed", Toast.LENGTH_LONG).show();
-                                                   }
-                                                });
-=======
                                 .update("news_ID", documentId,
                                         "news_imgURI", documentId+".jpg")
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -227,7 +185,6 @@ public class Add_News_Activity extends AppCompatActivity {
                                         Toast.makeText(Add_News_Activity.this, "update failed", Toast.LENGTH_LONG).show();
                                     }
                                 });
->>>>>>> origin/master
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

@@ -1,3 +1,4 @@
+
 package com.example.newsapp.admin;
 
 import android.content.Intent;
@@ -16,23 +17,23 @@ import com.example.newsapp.R;
 
 
 public class AdminFragment extends Fragment {
-    Button newsManager, userManager;
+    Button news_Manager;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        }
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_admin,container,false);
-        newsManager = view.findViewById(R.id.admin_fragment_newsManager);
-        newsManager.setOnClickListener(new View.OnClickListener() {
+        View view =inflater.inflate(R.layout.fragment_admin, container, false);
+        news_Manager = view.findViewById(R.id.admin_fragment_newsManager);
+        news_Manager.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity main = new MainActivity();
-                main.ChangeIntent(getActivity(), List_News_Activity.class);
+                Intent i = new Intent(getActivity(), List_News_Activity.class);
+                startActivity(i);
             }
         });
         return view;
