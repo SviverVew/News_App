@@ -2,66 +2,47 @@ package com.example.newsapp;
 
 import static android.content.ContentValues.TAG;
 
-import android.content.Intent;
-import android.os.Bundle;
+import static java.security.AccessController.getContext;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
-import androidx.recyclerview.widget.DividerItemDecoration;
-
 import com.example.newsapp.adapter.NewContext_Adapter;
+import com.example.newsapp.news_content_Fragment;
 import com.example.newsapp.testmodel.News;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import org.checkerframework.checker.units.qual.N;
+import android.os.Bundle;
+import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
-public class news_content_Fragment extends Fragment {
+public class List_News_Activity extends AppCompatActivity {
     private ArrayList<News> news;
     private RecyclerView recyclerView;
     private FirebaseFirestore db;
     private CollectionReference refer;
-    @Override
-    //test
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_news_content_, container, false);
-        // Tìm kiếm RecyclerView trong layout
-        recyclerView = view.findViewById(R.id.main_context_view);
-        news = new ArrayList<News>();
 
-        //tham chieu den collection category
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_list_news);
+        news = new ArrayList<>();
         db = FirebaseFirestore.getInstance();
         refer = db.collection("category");
-        // Load dữ liệu
+        recyclerView = findViewById(R.id.admin_list_news);
         getDataformFireStore(news);
-        // Return view
-        return view;
     }
     void getDataformFireStore(ArrayList<News> news1) {
         db.collection("news")
@@ -88,8 +69,8 @@ public class news_content_Fragment extends Fragment {
                                 news1.add(objnews);
                             }
                             NewContext_Adapter adapter = new NewContext_Adapter(news);
-                            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                            recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
+                            recyclerView.setLayoutManager(new LinearLayoutManager(List_News_Activity.this));
+                            recyclerView.addItemDecoration(new DividerItemDecoration(List_News_Activity.this, LinearLayoutManager.VERTICAL));
                             recyclerView.setAdapter(adapter);
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
@@ -98,15 +79,14 @@ public class news_content_Fragment extends Fragment {
                 });
     }
     private String getCate(String id, News news){
-       db.collection("category").document(id)
-               .get()
-               .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                   @Override
-                   public void onSuccess(DocumentSnapshot documentSnapshot) {
-                       news.setCategory(documentSnapshot.getString("cateName"));
-                   }
-               });
-       return news.getCategory();
+        db.collection("category").document(id)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        news.setCategory(documentSnapshot.getString("cateName"));
+                    }
+                });
+        return news.getCategory();
     }
-    //tao phương thức trừu tượng để các lớp khác có thể dùng
 }
