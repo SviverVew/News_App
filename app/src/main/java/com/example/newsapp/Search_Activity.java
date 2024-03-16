@@ -98,21 +98,21 @@ public class Search_Activity extends AppCompatActivity {
                                 Map<String, Object> data = document.getData();
                                 // Tạo object News từ dữ liệu Firestore
                                 News objNews = new News();
-                                int id = Integer.parseInt(data.get("news_ID").toString());
-                                String URL = "https://firebasestorage.googleapis.com/v0/b/newsdb-e0729.appspot.com/o/news" + id + ".jpg?alt=media";
-                                objNews.setId(id);
+                                String uri = document.get("news_imgURI").toString();
+                                Log.d(TAG, "onComplete: the document's image: " + uri);
+                                String URL = "https://firebasestorage.googleapis.com/v0/b/newsdb-e0729.appspot.com/o/image%2F" + uri +  "?alt=media";
                                 objNews.setImage(URL);
                                 objNews.setTitle(data.get("news_Title").toString());
                                 objNews.setContext(data.get("news_Context").toString());
                                 objNews.setUser(data.get("news_ID").toString());
-//                              objNews.setTime(data.get("news_time").toString());
+                              objNews.setTime(data.get("news_time").toString());
                                 objNews.setView(data.get("news_View").toString());
-                                objNews.setCategory(getCate(id, objNews));
+                                objNews.setCategory(getCate(data.get("news_cate").toString(), objNews));
                                 newsList.add(objNews);
                             }
 
                             // Khởi tạo adapter và set dữ liệu vào RecyclerView
-                            news = new NewContext_Adapter(newsList);
+                            news = new NewContext_Adapter((ArrayList<News>) newsList);
                             recyclerView.setAdapter(news);
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
@@ -121,9 +121,8 @@ public class Search_Activity extends AppCompatActivity {
                 });
 
     }
-    private String getCate(int id, News news){
-        String key = Integer.toString(id);
-        db.collection("category").document(key)
+    private String getCate(String id, News news) {
+        db.collection("category").document(id)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override

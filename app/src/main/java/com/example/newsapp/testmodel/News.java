@@ -10,14 +10,14 @@ public class News implements Serializable {
     private String context;
     private String user;
     private String category;
-        private String time;
-    private int id;
+    private String time;
+    private String id;
     private String view;
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -46,8 +46,6 @@ public class News implements Serializable {
         this.image = image;
     }
 
-
-
     public String getTitle() {
         return title;
     }
@@ -67,8 +65,16 @@ public class News implements Serializable {
     public String getUser() {
         return user;
     }
+    public String getTime() {
+        return time;
+    }
 
-    public News(int id, String title, String image,String context, String user, String view, String category) {
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+
+    public News(String id, String title, String image,String context, String user, String view, String category, String time) {
         this.image = image;
         this.title = title;
         this.context = context;
@@ -76,18 +82,11 @@ public class News implements Serializable {
         this.id = id;
         this.view = view;
         this.category = category;
+        this.time = time;
     }
 
     public void setUser(String user) {
         this.user = user;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
     }
 
     public News(String image, String title, String context, String user, String view) {

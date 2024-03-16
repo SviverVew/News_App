@@ -18,7 +18,7 @@ import com.squareup.picasso.Picasso;
 public class Show_Context_Activity extends AppCompatActivity {
     Intent intent;
     MaterialToolbar toolbar;
-    TextView title, context, date, view, category;
+    TextView title, context, view, category,time;
     ImageView image;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public class Show_Context_Activity extends AppCompatActivity {
         //FIND VIEW
         title = findViewById(R.id.show_news_title);
         context = findViewById(R.id.show_news_context);
-        date = findViewById(R.id.show_news_datecreated);
+        time = findViewById(R.id.show_news_datecreated);
         view = findViewById(R.id.show_news_view);
         image = findViewById(R.id.shows_news_image);
         category = findViewById(R.id.show_news_category);
@@ -42,7 +42,7 @@ public class Show_Context_Activity extends AppCompatActivity {
             view.setText(news.getView().toString() + " view");
             category.setText("Chuyên mục: " + news.getCategory());
             Picasso.get().load(news.getImage()).into(image);
-//            date.setText(news.getTime().toString() );
+            time.setText(news.getTime().toString());
         }
         else {
             Intent i = new Intent(Show_Context_Activity.this, news_content_Fragment.class);
