@@ -50,8 +50,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-
-
                 loginWithMail();
             }
         });
@@ -81,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
     private void loginWithMail() {
         String UserName,PassWord;
         UserName=Login_UserName.getText().toString();
+        RememberMe = findViewById(R.id.checkBox_RememberMe);
         PassWord=Login_Pass.getText().toString();
         if(TextUtils.isEmpty(UserName)){
             Toast.makeText(this,"Vui lòng nhập Email!!",Toast.LENGTH_SHORT).show();
@@ -90,16 +89,27 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this,"Vui lòng nhập mật khẩu !!",Toast.LENGTH_SHORT).show();
        return;
         }
+
         Auth.signInWithEmailAndPassword(UserName,PassWord).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+
                 if(task.isSuccessful()){
                     progressBar.setVisibility(View.VISIBLE);
-                    //thông báo đn thành công
+                    //đổ dữ liệu vào catch để lưu phiên đn khi ấn vào nút lưu đn
+                    if(RememberMe.isChecked()){
                     SharedPreferences sharedPreferences=getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
                     SharedPreferences.Editor editor=sharedPreferences.edit();
                     editor.putString("name","true");
                     editor.apply();
+                    }
+                    else {
+                        SharedPreferences sharedPreferences=getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+                        SharedPreferences.Editor editor=sharedPreferences.edit();
+                        editor.putString("name","");
+                        editor.apply();
+                    }
+                    //thông báo đn thành công
                     Toast.makeText(getApplicationContext(),"Đăng nhập thành công!",Toast.LENGTH_SHORT).show();
                 Intent i=new Intent(LoginActivity.this,MainActivity.class);
                 startActivity(i);

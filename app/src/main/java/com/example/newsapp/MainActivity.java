@@ -6,6 +6,7 @@ import static com.example.newsapp.R.id.tabLayout;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -25,6 +26,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.newsapp.adapter.NewContext_Adapter;
@@ -38,6 +40,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -49,9 +53,11 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     Button btn;
+    private boolean isDarkMode = false;
     public  static final String SHARED_PREFS="sharedPrefs";
     NavigationView Menu_Nav;
     Fragment context;
+    TextView Mail_Nav;
     TabLayout tabLayout;
     MaterialToolbar topmenu;
     BottomNavigationView bottomnav;
@@ -71,13 +77,42 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout=findViewById(R.id.drawer_layout);
         bottomnav.setOnItemSelectedListener(onItemSelectedListener());
         ChangeFragment(new news_content_Fragment());
-        //lấy id của button đăng xuất ,và add chức năng đăng xuất
 
         Menu_Nav=findViewById(R.id.Nav_view);
+        //đổ dữ liệu vào thanh navbar (Email . ảnh đại diện)
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        View headerView = Menu_Nav.getHeaderView(0);
+        TextView MailView = headerView.findViewById(R.id.Email_Nav);
+        if(currentUser!=null){
+        MailView.setText(currentUser.getEmail());}
+
+        //lấy id của button đăng xuất ,và add chức năng đăng xuất
+
+
+
+
+        //đổi giao diện sáng tối
         Menu_Nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
                 int itemID= menuItem.getItemId();
+                //đổi giao diện
+                isDarkMode = !isDarkMode;
+                if(itemID==R.id.nav_change){
+                    if (isDarkMode) {
+                        setDarkMode();
+                    } else {
+                        setLightMode();
+                    }
+                }
+                //nút trang chủ
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                if(itemID==R.id.nav_home){
+                    startActivity(intent);
+                }
+                //đăng xuất
                 if(itemID==R.id.nav_logout){
                     //đặt dữ liệu trong catch về null
                     SharedPreferences sharedPreferences=getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
@@ -86,11 +121,28 @@ public class MainActivity extends AppCompatActivity {
                     editor.apply();
                     Intent Out = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(Out);
-                    finish();
                 }
                 return false;
             }
+
+            private void setLightMode() {
+                int lightColor = ContextCompat.getColor(getApplicationContext(), R.color.light_color);
+                // Thực hiện các thay đổi màu sắc cho các thành phần trong giao diện người dùng
+                getWindow().getDecorView().setBackgroundColor(lightColor);
+                // Các thay đổi màu sắc khác (ví dụ: TextView, Button, etc.)
+            }
+
+            private void setDarkMode() {
+                int darkColor = ContextCompat.getColor(getApplicationContext(), R.color.dark_color);
+                // Thực hiện các thay đổi màu sắc cho các thành phần trong giao diện người dùng
+                getWindow().getDecorView().setBackgroundColor(darkColor);
+                // Các thay đổi màu sắc khác (ví dụ: TextView, Button, etc.)
+            }
         });
+        //nút trang chủ
+
+
+        //thiết kế header
         topmenu.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {

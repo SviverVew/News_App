@@ -15,6 +15,7 @@
         android:src="@drawable/icon_pro"
          />
     <TextView
+        android:id="@+id/Email_Nav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="User@mail.com"
