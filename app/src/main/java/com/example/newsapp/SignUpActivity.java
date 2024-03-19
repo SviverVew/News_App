@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,8 +16,11 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity {
     EditText EmailSignUp,PassWord,RePassWord;
@@ -41,15 +45,34 @@ public class SignUpActivity extends AppCompatActivity {
                 SignUp();
             }
 
-
         });
 
+    }
+    //đẩy data lên firebase realtime
+    private void PushData(){
+        String UserName,Pass,RePass;
+        UserName= EmailSignUp.getText().toString();
+        Pass=PassWord.getText().toString();
+        FirebaseDatabase db=FirebaseDatabase.getInstance();
+        //push data in firebase
+        //đổi mail sang dãy kí tự  để lưu dưới dạng id tránh dấu . và , không lưu đc trên firebase
+        String MailChangeEncode = UtilsEncode.encodeEmailToNumber(UserName);
+        //set key & value cho tree database
+        //Pass
+        String UserInfoPass = "User/"+MailChangeEncode+"/PassWord";
+        DatabaseReference userRefPas = db.getReference(UserInfoPass);
+        userRefPas.setValue(Pass);
+        //Mail
+        String UserInfoMail = "User/"+MailChangeEncode+"/Email";
+        DatabaseReference userRefEmail = db.getReference(UserInfoMail);
+        userRefEmail.setValue(UserName);
     }
     private void SignUp() {
         String UserName,Pass,RePass;
         UserName= EmailSignUp.getText().toString();
         Pass=PassWord.getText().toString();
          RePass = RePassWord.getText().toString();
+
         if(TextUtils.isEmpty(UserName)){
             Toast.makeText(this,"Vui lòng nhập Email!",Toast.LENGTH_SHORT).show();
             return;
@@ -69,6 +92,7 @@ public class SignUpActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     progressBar.setVisibility(View.VISIBLE);
                     Toast.makeText(getApplicationContext(),"Đăng kí thành công!",Toast.LENGTH_SHORT).show();
+                    PushData();
                     Intent i=new Intent(SignUpActivity.this,LoginActivity.class);
                     //AlertDialog dang ki thanh cong , vui long dang nhap tai khoan vua dang ki
                     startActivity(i);

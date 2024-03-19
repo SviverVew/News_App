@@ -16,10 +16,12 @@ import java.time.LocalTime;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -34,6 +36,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -46,6 +49,8 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     Button btn;
+    public  static final String SHARED_PREFS="sharedPrefs";
+    NavigationView Menu_Nav;
     Fragment context;
     TabLayout tabLayout;
     MaterialToolbar topmenu;
@@ -66,6 +71,26 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout=findViewById(R.id.drawer_layout);
         bottomnav.setOnItemSelectedListener(onItemSelectedListener());
         ChangeFragment(new news_content_Fragment());
+        //lấy id của button đăng xuất ,và add chức năng đăng xuất
+
+        Menu_Nav=findViewById(R.id.Nav_view);
+        Menu_Nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                int itemID= menuItem.getItemId();
+                if(itemID==R.id.nav_logout){
+                    //đặt dữ liệu trong catch về null
+                    SharedPreferences sharedPreferences=getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+                    SharedPreferences.Editor editor=sharedPreferences.edit();
+                    editor.putString("name","");
+                    editor.apply();
+                    Intent Out = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(Out);
+                    finish();
+                }
+                return false;
+            }
+        });
         topmenu.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {

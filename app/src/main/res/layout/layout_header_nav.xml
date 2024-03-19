@@ -8,13 +8,12 @@
     android:padding="30dp"
     android:gravity="bottom">
 
-    <com.google.android.material.imageview.ShapeableImageView
-
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/User_Avt"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:padding="5sp"
-        android:src="@mipmap/ic_launcher_round"
-        app:shapeAppearanceOverlay="@style/tronImage" />
+        android:src="@drawable/icon_pro"
+         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
