@@ -229,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
                 ChangeFragment(new AdminFragment());
                 break;
             case "Âm nhạc":
-                ChangeFragment(new news_content_trending_Fragment());
+                ChangeFragment(new new_content_trending_Fragment());
                 break;
             default:
                 break;
@@ -245,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
                     ChangeFragment(new news_content_Fragment());
                 }
                 if(item.getItemId()==R.id.idxuhuong){
-                    ChangeFragment(new news_content_trending_Fragment());
+                    ChangeFragment(new new_content_trending_Fragment());
                 }
                 if(item.getItemId()==R.id.idtienich){
                     ChangeFragment(new AdminFragment());

@@ -40,7 +40,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class news_content_Fragment extends Fragment {
+public class new_content_trending_Fragment extends Fragment {
     private ArrayList<News> news;
     private RecyclerView recyclerView;
     private FirebaseFirestore db;
@@ -65,6 +65,8 @@ public class news_content_Fragment extends Fragment {
     }
     void getDataformFireStore(ArrayList<News> news1) {
         db.collection("news")
+                .orderBy("news_View", Query.Direction.DESCENDING)
+                .limit(20)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
