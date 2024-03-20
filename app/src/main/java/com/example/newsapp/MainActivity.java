@@ -122,6 +122,9 @@ public class MainActivity extends AppCompatActivity {
                     Intent Out = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(Out);
                 }
+                if(itemID==R.id.nav_save){
+
+                }
                 return false;
             }
 
@@ -248,7 +251,8 @@ public class MainActivity extends AppCompatActivity {
                     ChangeFragment(new new_content_trending_Fragment());
                 }
                 if(item.getItemId()==R.id.idtienich){
-                    ChangeFragment(new AdminFragment());
+                    Intent intent = new Intent(MainActivity.this, UserProFileActivity.class);
+                    startActivity(intent);
                 }
                 return true;
             }

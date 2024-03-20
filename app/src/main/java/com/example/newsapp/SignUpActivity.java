@@ -66,6 +66,8 @@ public class SignUpActivity extends AppCompatActivity {
         String UserInfoMail = "User/"+MailChangeEncode+"/Email";
         DatabaseReference userRefEmail = db.getReference(UserInfoMail);
         userRefEmail.setValue(UserName);
+        String MarkNews = "User/"+MailChangeEncode+"/MarkNews";
+        DatabaseReference userRefMarkNews = db.getReference(MarkNews);
     }
     private void SignUp() {
         String UserName,Pass,RePass;

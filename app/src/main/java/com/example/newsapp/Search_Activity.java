@@ -102,6 +102,7 @@ public class Search_Activity extends AppCompatActivity {
                                 Log.d(TAG, "onComplete: the document's image: " + uri);
                                 String URL = "https://firebasestorage.googleapis.com/v0/b/newsdb-e0729.appspot.com/o/image%2F" + uri +  "?alt=media";
                                 objNews.setImage(URL);
+                                objNews.setId(data.get("news_ID").toString());
                                 objNews.setTitle(data.get("news_Title").toString());
                                 objNews.setContext(data.get("news_Context").toString());
                                 objNews.setUser(data.get("news_ID").toString());
