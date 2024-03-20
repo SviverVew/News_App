@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                             List<News> newsList = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Map<String, Object> data = document.getData();
-                                News objnews = new News();
+                                News objnews = nehw News();
                                 objnews.setCategory(data.get("cateName").toString());
                                 newsList.add(objnews);
                             }
