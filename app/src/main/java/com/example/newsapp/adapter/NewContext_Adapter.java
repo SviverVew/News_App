@@ -22,6 +22,10 @@ import com.example.newsapp.LoginActivity;
 import com.example.newsapp.R;
 import com.example.newsapp.Show_Context_Activity;
 import com.example.newsapp.testmodel.News;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -29,7 +33,7 @@ import java.util.List;
 public class NewContext_Adapter extends RecyclerView.Adapter<NewContext_Adapter.ViewHolder> implements Filterable {
     private ArrayList<News> arr_News;
     private ArrayList<News> getArr_Newsold;
-
+    FirebaseFirestore db;
     public NewContext_Adapter(ArrayList<News> arr_News) {
         this.arr_News = arr_News;
         this.getArr_Newsold = new ArrayList<>(arr_News);
@@ -44,6 +48,7 @@ public class NewContext_Adapter extends RecyclerView.Adapter<NewContext_Adapter.
 
     @Override
     public void onBindViewHolder(@NonNull NewContext_Adapter.ViewHolder holder, int position) {
+        db = FirebaseFirestore.getInstance();
         News news = arr_News.get(position);
         holder.title.setText(news.getTitle());
         holder.user.setText(news.getUser());
@@ -55,6 +60,12 @@ public class NewContext_Adapter extends RecyclerView.Adapter<NewContext_Adapter.
             public void onClick(View v) {
                 Intent i = new Intent(v.getContext(), Show_Context_Activity.class);
                 i.putExtra("data", news);
+
+                // Tăng số lượt view ở đây
+                int currentViews = Integer.parseInt(news.getView());
+                news.setView(String.valueOf(currentViews + 1));
+                updateViews(news.getId(), currentViews+1);
+
                 v.getContext().startActivity(i);
                 Log.d(TAG, "onClick: " + news.getContext());
             }
@@ -69,7 +80,7 @@ public class NewContext_Adapter extends RecyclerView.Adapter<NewContext_Adapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView image;
-        TextView title, user, time;
+        TextView title, user, time, view;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
@@ -77,6 +88,7 @@ public class NewContext_Adapter extends RecyclerView.Adapter<NewContext_Adapter.
             title = itemView.findViewById(R.id.item_main_title);
             user = itemView.findViewById(R.id.item_main_poster);
             time = itemView.findViewById(R.id.item_main_time);
+            view = itemView.findViewById(R.id.show_news_view);
         }
     }
     @Override
@@ -109,5 +121,22 @@ public class NewContext_Adapter extends RecyclerView.Adapter<NewContext_Adapter.
                 notifyDataSetChanged();
             }
         };
+    }
+    void updateViews(String documentId, int newViewCount) {
+
+        db.collection("news").document(documentId)
+                .update("news_View", newViewCount)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "Tăng view thành công!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e(TAG, "Tăng view thất bại", e);
+                    }
+                });
     }
 }
