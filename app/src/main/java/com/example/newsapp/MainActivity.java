@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         bottomnav = findViewById(R.id.main_bottommenu);
         drawerLayout=findViewById(R.id.drawer_layout);
         bottomnav.setOnItemSelectedListener(onItemSelectedListener());
-        ChangeFragment(new news_content_Fragment());
+        ChangeFragment(new ChinhTriFragment());
         topmenu.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -146,10 +146,10 @@ public class MainActivity extends AppCompatActivity {
     private void switchFragment(String category) {
         switch (category) {
             case "Chính trị":
-                ChangeFragment(new news_content_Fragment());
+                ChangeFragment(new ChinhTriFragment());
                 break;
             case "Thể thao":
-                ChangeFragment(new AdminFragment());
+                ChangeFragment(new TheThaoFragment());
                 break;
             case "Âm nhạc":
                 ChangeFragment(new news_content_trending_Fragment());
