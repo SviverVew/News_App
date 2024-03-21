@@ -51,7 +51,7 @@ public class SignUpActivity extends AppCompatActivity {
     //đẩy data lên firebase realtime
     private void PushData(){
         String UserName,Pass,RePass;
-        UserName= EmailSignUp.getText().toString();
+        UserName= EmailSignUp.getText().toString().toLowerCase();
         Pass=PassWord.getText().toString();
         FirebaseDatabase db=FirebaseDatabase.getInstance();
         //push data in firebase

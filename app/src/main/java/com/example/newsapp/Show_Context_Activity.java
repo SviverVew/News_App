@@ -1,5 +1,6 @@
 package com.example.newsapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -14,11 +15,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.newsapp.testmodel.News;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 public class Show_Context_Activity extends AppCompatActivity {
@@ -73,11 +79,105 @@ public class Show_Context_Activity extends AppCompatActivity {
         SaveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                News news = (News) intent.getSerializableExtra("data");
+               String Title = news.getTitle();
+               String ID = news.getId();
+               String View = news.getView();
+               String Image = news.getImage();
                 String MailChangeEncode = UtilsEncode.encodeEmailToNumber(EmailSignUp);
                 FirebaseDatabase db=FirebaseDatabase.getInstance();
-                String MarkNews = "User/"+MailChangeEncode+"/MarkNews/Title";
-                DatabaseReference userRefMarkNews = db.getReference(MarkNews);
-                userRefMarkNews.setValue(title);
+
+                String MarkNewsTitle = "User/"+MailChangeEncode+"/MarkNews/"+ID+"/Title";
+                String MarkNewsView = "User/"+MailChangeEncode+"/MarkNews/"+ID+"/View";
+                String MarkNewsImg = "User/"+MailChangeEncode+"/MarkNews/"+ID+"/Img";
+                DatabaseReference userRefMarkNewsTitle = db.getReference(MarkNewsTitle);
+                DatabaseReference userRefMarkNewsView = db.getReference(MarkNewsView);
+                DatabaseReference userRefMarkNewsImg = db.getReference(MarkNewsImg);
+                userRefMarkNewsTitle.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            // Dữ liệu đã tồn tại, không thực hiện ghi
+                            Toast.makeText(getApplicationContext(), "Tin đã lưu rồi!!", Toast.LENGTH_SHORT).show();
+
+                        } else {
+                            // Dữ liệu chưa tồn tại, thực hiện ghi
+                            userRefMarkNewsTitle.setValue(Title).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        // Ghi dữ liệu thành công
+                                        Toast.makeText(getApplicationContext(), "Lưu tin thành công !!", Toast.LENGTH_SHORT).show();
+
+                                    } else {
+                                        // Ghi dữ liệu không thành công
+
+                                    }
+                                }
+                            });
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        // Xử lý lỗi khi truy xuất dữ liệu
+                    }
+                });
+                userRefMarkNewsView.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            // Dữ liệu đã tồn tại, không thực hiện ghi
+
+                        } else {
+                            // Dữ liệu chưa tồn tại, thực hiện ghi
+                            userRefMarkNewsView.setValue(View).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        // Ghi dữ liệu thành công
+
+                                    } else {
+                                        // Ghi dữ liệu không thành côngToast.makeText(getApplicationContext(), "Lưu tin thất bại", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        // Xử lý lỗi khi truy xuất dữ liệu
+                    }
+                });
+                userRefMarkNewsImg.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            // Dữ liệu đã tồn tại, không thực hiện ghi
+
+                        } else {
+                            // Dữ liệu chưa tồn tại, thực hiện ghi
+                            userRefMarkNewsImg.setValue(Image).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        // Ghi dữ liệu thành công
+
+                                    } else {
+                                        // Ghi dữ liệu không thành công
+
+                                    }
+                                }
+                            });
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        // Xử lý lỗi khi truy xuất dữ liệu
+                    }
+                });
             }
         });
     }

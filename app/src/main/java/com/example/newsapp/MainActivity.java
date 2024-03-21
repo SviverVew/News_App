@@ -63,11 +63,13 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomnav;
     DrawerLayout drawerLayout;
     FirebaseFirestore db;
+    private CategoryFragment categoryFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tabLayout=findViewById(R.id.tabLayout);
+        categoryFragment = new CategoryFragment();
         getDataFromFirestore();
 
         //TEST
@@ -123,7 +125,8 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(Out);
                 }
                 if(itemID==R.id.nav_save){
-
+                    Intent save = new Intent(getApplicationContext(), FavoriteActivity.class);
+                    startActivity(save);
                 }
                 return false;
             }
@@ -183,34 +186,46 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            List<News> newsList = new ArrayList<>();
+                            List<News> cateList = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Map<String, Object> data = document.getData();
                                 News objnews = new News();
                                 objnews.setCategory(data.get("cateName").toString());
-                                newsList.add(objnews);
+                                objnews.setId(data.get("cateID").toString());
+                                cateList.add(objnews);
                             }
                             // Thêm dữ liệu category vào TabLayout
-                            addCategoriesToTabLayout(newsList);
+                            addCategoriesToTabLayout(cateList);
+//                            Intent intent = new Intent(MainActivity.this, news_content_Fragment.class);
+//                            intent.putExtra("cate", cateList.toString());
                         } else {
                             Log.d(ContentValues.TAG, "Error getting documents: ", task.getException());
                         }
                     }
                 });
     }
+
+
     // Hàm thêm dữ liệu category vào TabLayout
-    private void addCategoriesToTabLayout(List<News> newsList) {
-        for (News news : newsList) {
-            String category = news.getCategory();
-            tabLayout.addTab(tabLayout.newTab().setText(category));
+    private void addCategoriesToTabLayout(List<News> cateList) {
+        for (News cate : cateList) {
+            String categoryId = cate.getId();
+            String category = cate.getCategory();
+            TabLayout.Tab tab = tabLayout.newTab().setText(category);
+            tabLayout.addTab(tab);
+            // Gán id của category vào tag của tab
+            tab.setTag(categoryId);
         }
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                int position = tab.getPosition();
-                News selectedNews = newsList.get(position);
-                switchFragment(selectedNews.getCategory());
+                // Lấy categoryId từ tag của tab được chọn
+                String categoryId = (String) tab.getTag();
+                // Cập nhật dữ liệu trong categoryFragment
+                categoryFragment.updateData(categoryId);
+                ChangeFragment(categoryFragment);
             }
+
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
@@ -222,22 +237,9 @@ public class MainActivity extends AppCompatActivity {
                 // Không cần xử lý khi reselected tab
             }
         });
+
     }
-    private void switchFragment(String category) {
-        switch (category) {
-            case "Chính trị":
-                ChangeFragment(new news_content_Fragment());
-                break;
-            case "Thể thao":
-                ChangeFragment(new AdminFragment());
-                break;
-            case "Âm nhạc":
-                ChangeFragment(new new_content_trending_Fragment());
-                break;
-            default:
-                break;
-        }
-    }
+
 
     //EVENT BOTTOMNAV
     private NavigationBarView.OnItemSelectedListener onItemSelectedListener(){
@@ -270,4 +272,5 @@ public class MainActivity extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
 }
