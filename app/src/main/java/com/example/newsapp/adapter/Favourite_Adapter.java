@@ -24,9 +24,9 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class Favourite_Adapter extends RecyclerView.Adapter<Favourite_Adapter.ViewHolder> {
-    private ArrayList<UserFavourite> arr_Fav;
+    private ArrayList<News> arr_Fav;
     FirebaseDatabase db;
-    public Favourite_Adapter(ArrayList<UserFavourite> arr_Fav) {
+    public Favourite_Adapter(ArrayList<News> arr_Fav) {
         this.arr_Fav = arr_Fav;
     }
 
@@ -40,16 +40,16 @@ public class Favourite_Adapter extends RecyclerView.Adapter<Favourite_Adapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull Favourite_Adapter.ViewHolder holder, int position) {
-        UserFavourite Fav=arr_Fav.get(position);
+        News Fav=arr_Fav.get(position);
         holder.title.setText(Fav.getTitle());
-        holder.view.setText(Fav.getView());
-        Picasso.get().load(Fav.getImg()).into(holder.image);
+        holder.view.setText(Fav.getView() + " view");
+        holder.time.setText(Fav.getTime());
+        Picasso.get().load(Fav.getImage()).into(holder.image);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(v.getContext(), Show_Context_Activity.class);
                 i.putExtra("data", Fav);
-
 
                 v.getContext().startActivity(i);
                 Log.d(TAG, "onClick: " + Fav.getContext());
@@ -59,17 +59,18 @@ public class Favourite_Adapter extends RecyclerView.Adapter<Favourite_Adapter.Vi
 
     @Override
     public int getItemCount() {
-        return 0;
+        return arr_Fav.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
-        TextView title,  view;
+        TextView title,  view,time;
         public ViewHolder(@NonNull View itemFav){
             super(itemFav);
             image = itemView.findViewById(R.id.item_news_image);
             title = itemView.findViewById(R.id.item_main_title);
             view = itemView.findViewById(R.id.item_main_poster);
+            time = itemView.findViewById(R.id.item_main_time);
         }
     }
 }

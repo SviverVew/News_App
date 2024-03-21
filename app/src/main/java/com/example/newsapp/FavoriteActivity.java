@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -55,12 +56,15 @@ public class FavoriteActivity extends AppCompatActivity {
     Favourite_Adapter FavAdap;
     private RecyclerView recyclerView;
     private FirebaseDatabase db;
-    ArrayList<UserFavourite> newsList;
+    ArrayList<News> newsList;
     String Email;
+    Button back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite);
+        back=findViewById(R.id.buttonBackFav);
+
         newsList = new ArrayList<>();
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
@@ -68,10 +72,13 @@ public class FavoriteActivity extends AppCompatActivity {
             Email=currentUser.getEmail();}
         EdgeToEdge.enable(this);
         recyclerView = findViewById(R.id.Fav_List);
-
-        /*recyclerView.setLayoutManager(linearLayoutManager);
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        recyclerView.addItemDecoration(itemDecoration);*/
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(FavoriteActivity.this,MainActivity.class);
+                startActivity(i);
+            }
+        });
         getDataFromRealTime();
     }
 
@@ -84,17 +91,22 @@ public class FavoriteActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for (DataSnapshot childSnapshot : snapshot.getChildren()) {
-                    UserFavourite favourite = new UserFavourite();
+                    News favourite = new News();
                     //String key = childSnapshot.getKey();
                     String img = childSnapshot.child("Img").getValue(String.class);
-                    Toast.makeText(getApplicationContext(), img, Toast.LENGTH_SHORT).show();
-                    String URL = img;
                     String title = childSnapshot.child("Title").getValue(String.class);
-                    Toast.makeText(getApplicationContext(), title, Toast.LENGTH_SHORT).show();
+                    String time = childSnapshot.child("Time").getValue(String.class);
+                    String context = childSnapshot.child("Context").getValue(String.class);
                     String view = childSnapshot.child("View").getValue(String.class);
-                    favourite.setImg(URL);
+                    String id = childSnapshot.child("ID").getValue(String.class);
+                    String cate = childSnapshot.child("Category").getValue(String.class);
+                    favourite.setImage(img);
                     favourite.setTitle(title);
+                    favourite.setTime(time);
                     favourite.setView(view);
+                    favourite.setContext(context);
+                    favourite.setId(id);
+                    favourite.setCategory(cate);
                     newsList.add(favourite);
 
                 }

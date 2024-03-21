@@ -20,9 +20,11 @@
             android:id="@+id/main_topmenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:paddingTop="20dp"
+            android:background="#009688"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
+            app:labelVisibilityMode="labeled"
             app:menu="@menu/topmenu"
 
             app:titleCentered="true"
@@ -31,11 +33,13 @@
             <Button
                 android:id="@+id/NavButton"
                 android:layout_width="23dp"
+                android:layout_marginRight="10dp"
                 android:layout_height="23dp"
                 android:background="@drawable/list_icon" />
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
+                app:tabTextColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:tabGravity="fill"
@@ -48,7 +52,8 @@
             android:id="@+id/main_context"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"></FrameLayout>
+            android:layout_weight="1"
+            android:background="@color/white" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/main_bottommenu"
@@ -56,9 +61,10 @@
             android:layout_height="wrap_content"
             app:itemActiveIndicatorStyle="@android:color/transparent"
             app:itemHorizontalTranslationEnabled="false"
-            app:itemIconTint="@color/white"
-            app:itemTextColor="@color/white"
+            app:itemIconTint="@color/black"
+            app:itemTextColor="@color/black"
             app:labelVisibilityMode="labeled"
+            android:background="@color/white"
             app:menu="@menu/bottommenu" />
     </LinearLayout>
     <com.google.android.material.navigation.NavigationView

@@ -49,6 +49,8 @@ public class Show_Context_Activity extends AppCompatActivity {
         category = findViewById(R.id.show_news_category);
         BackBtn= findViewById(R.id.BackContext);
         SaveBtn= findViewById(R.id.SaveNews);
+
+
         if(currentUser!=null){
             EmailSignUp=currentUser.getEmail();}
         //GET DATA TỪ Intent
@@ -79,20 +81,33 @@ public class Show_Context_Activity extends AppCompatActivity {
         SaveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 News news = (News) intent.getSerializableExtra("data");
                String Title = news.getTitle();
                String ID = news.getId();
                String View = news.getView();
                String Image = news.getImage();
+               String Time = news.getTime();
+               String Cate = news.getCategory();
+               String Context = news.getContext();
                 String MailChangeEncode = UtilsEncode.encodeEmailToNumber(EmailSignUp);
                 FirebaseDatabase db=FirebaseDatabase.getInstance();
 
                 String MarkNewsTitle = "User/"+MailChangeEncode+"/MarkNews/"+ID+"/Title";
                 String MarkNewsView = "User/"+MailChangeEncode+"/MarkNews/"+ID+"/View";
                 String MarkNewsImg = "User/"+MailChangeEncode+"/MarkNews/"+ID+"/Img";
+                String MarkNewsContext = "User/"+MailChangeEncode+"/MarkNews/"+ID+"/Context";
+                String MarkNewsTime= "User/"+MailChangeEncode+"/MarkNews/"+ID+"/Time";
+                String MarkNewsCate= "User/"+MailChangeEncode+"/MarkNews/"+ID+"/Category";
+                String MarkNewsID= "User/"+MailChangeEncode+"/MarkNews/"+ID+"/ID";
                 DatabaseReference userRefMarkNewsTitle = db.getReference(MarkNewsTitle);
                 DatabaseReference userRefMarkNewsView = db.getReference(MarkNewsView);
                 DatabaseReference userRefMarkNewsImg = db.getReference(MarkNewsImg);
+                DatabaseReference userRefMarkNewsContext = db.getReference(MarkNewsContext);
+                DatabaseReference userRefMarkNewsTime = db.getReference(MarkNewsTime);
+                DatabaseReference userRefMarkNewsCate = db.getReference(MarkNewsCate);
+                DatabaseReference userRefMarkNewsId = db.getReference(MarkNewsID);
                 userRefMarkNewsTitle.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -107,6 +122,7 @@ public class Show_Context_Activity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         // Ghi dữ liệu thành công
+                                        SaveBtn.setBackgroundResource(R.drawable.baseline_save);
                                         Toast.makeText(getApplicationContext(), "Lưu tin thành công !!", Toast.LENGTH_SHORT).show();
 
                                     } else {
@@ -132,6 +148,114 @@ public class Show_Context_Activity extends AppCompatActivity {
                         } else {
                             // Dữ liệu chưa tồn tại, thực hiện ghi
                             userRefMarkNewsView.setValue(View).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        // Ghi dữ liệu thành công
+
+                                    } else {
+                                        // Ghi dữ liệu không thành côngToast.makeText(getApplicationContext(), "Lưu tin thất bại", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        // Xử lý lỗi khi truy xuất dữ liệu
+                    }
+                });
+                userRefMarkNewsContext.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            // Dữ liệu đã tồn tại, không thực hiện ghi
+
+                        } else {
+                            // Dữ liệu chưa tồn tại, thực hiện ghi
+                            userRefMarkNewsContext.setValue(Context).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        // Ghi dữ liệu thành công
+
+                                    } else {
+                                        // Ghi dữ liệu không thành côngToast.makeText(getApplicationContext(), "Lưu tin thất bại", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        // Xử lý lỗi khi truy xuất dữ liệu
+                    }
+                });
+                userRefMarkNewsCate.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            // Dữ liệu đã tồn tại, không thực hiện ghi
+
+                        } else {
+                            // Dữ liệu chưa tồn tại, thực hiện ghi
+                            userRefMarkNewsCate.setValue(Cate).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        // Ghi dữ liệu thành công
+
+                                    } else {
+                                        // Ghi dữ liệu không thành côngToast.makeText(getApplicationContext(), "Lưu tin thất bại", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        // Xử lý lỗi khi truy xuất dữ liệu
+                    }
+                });
+                userRefMarkNewsTime.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            // Dữ liệu đã tồn tại, không thực hiện ghi
+
+                        } else {
+                            // Dữ liệu chưa tồn tại, thực hiện ghi
+                            userRefMarkNewsTime.setValue(Time).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        // Ghi dữ liệu thành công
+
+                                    } else {
+                                        // Ghi dữ liệu không thành côngToast.makeText(getApplicationContext(), "Lưu tin thất bại", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        // Xử lý lỗi khi truy xuất dữ liệu
+                    }
+                });
+                userRefMarkNewsId.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            // Dữ liệu đã tồn tại, không thực hiện ghi
+
+                        } else {
+                            // Dữ liệu chưa tồn tại, thực hiện ghi
+                            userRefMarkNewsId.setValue(ID).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
