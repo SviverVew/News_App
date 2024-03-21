@@ -10,36 +10,32 @@
     >
 
     <Button
-        android:id="@+id/btnuser1"
+        android:id="@+id/btnBackUser"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/ic_back"/>
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/ic_back" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imageView"
         android:layout_width="100dp"
         android:layout_height="100dp"
 
-        android:src="@drawable/avtuser"
+        android:layout_gravity="center"
+        android:layout_marginBottom="15dp"
         android:padding="10dp"
-        app:shapeAppearanceOverlay="@style/tronImage"/>
+        android:src="@drawable/avtuser"
+        app:shapeAppearanceOverlay="@style/tronImage" />
 
     <TextView
         android:id="@+id/txtuser1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="15dp"
         android:background="@color/cam"
         android:text=" Your EMAIL"
         android:textColor="@color/black"
         android:textSize="30dp" />
 
-    <TextView
-        android:id="@+id/txtuser2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/cam"
-        android:text=" @ gmail.com"
-        android:textColor="@color/black"
-        android:textSize="20dp" />
 </LinearLayout>

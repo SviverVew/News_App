@@ -51,7 +51,7 @@ public class NewContext_Adapter extends RecyclerView.Adapter<NewContext_Adapter.
         db = FirebaseFirestore.getInstance();
         News news = arr_News.get(position);
         holder.title.setText(news.getTitle());
-        holder.user.setText(news.getUser());
+        holder.view.setText(news.getView() + " view");
         holder.time.setText(news.getTime());
         Picasso.get().load(news.getImage()).into(holder.image);
         //add click listener
@@ -86,9 +86,9 @@ public class NewContext_Adapter extends RecyclerView.Adapter<NewContext_Adapter.
             super(itemView);
             image = itemView.findViewById(R.id.item_news_image);
             title = itemView.findViewById(R.id.item_main_title);
-            user = itemView.findViewById(R.id.item_main_poster);
+            view = itemView.findViewById(R.id.item_main_poster);
             time = itemView.findViewById(R.id.item_main_time);
-            view = itemView.findViewById(R.id.show_news_view);
+//            view = itemView.findViewById(R.id.show_news_view);
         }
     }
     @Override

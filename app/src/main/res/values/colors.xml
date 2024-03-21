@@ -4,4 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="xam">#707070</color>
     <color name="cam">#FFC063</color>
+    <color name="dark_color">#000000</color>
+    <color name="light_color">#FFFFFF</color>
 </resources>
