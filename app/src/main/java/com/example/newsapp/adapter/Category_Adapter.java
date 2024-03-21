@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 
 import com.example.newsapp.R;
 import com.example.newsapp.testmodel.Category;
+import com.example.newsapp.testmodel.News;
 
 import java.util.ArrayList;
 import java.util.List;

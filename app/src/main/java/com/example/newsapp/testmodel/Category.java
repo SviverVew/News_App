@@ -33,6 +33,9 @@ public class Category {
 
     public Category(String ID, String cateName) {
         this.ID = ID;
-        CateName = cateName;
+        this.CateName = cateName;
+    }
+
+    public Category() {
     }
 }
