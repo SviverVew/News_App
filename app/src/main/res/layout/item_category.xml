@@ -7,3 +7,4 @@
     android:gravity="center"
     android:textColor="@color/black"
     android:textSize="20sp"/>
+

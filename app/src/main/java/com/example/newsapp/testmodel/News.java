@@ -29,12 +29,12 @@ public class News implements Serializable {
         this.view = view;
     }
 
-    public String getCategory() {
+   public String getCategory() {
         return category;
-    }
+   }
 
-    public void setCategory(String category) {
-        this.category = category;
+   public void setCategory(String category) {
+       this.category = category;
     }
 
 

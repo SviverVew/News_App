@@ -106,7 +106,7 @@ public class Search_Activity extends AppCompatActivity {
                                 objNews.setTitle(data.get("news_Title").toString());
                                 objNews.setContext(data.get("news_Context").toString());
                                 objNews.setUser(data.get("news_ID").toString());
-                              objNews.setTime(data.get("news_time").toString());
+                                objNews.setTime(data.get("news_time").toString());
                                 objNews.setView(data.get("news_View").toString());
                                 objNews.setCategory(getCate(data.get("news_cate").toString(), objNews));
                                 newsList.add(objNews);
