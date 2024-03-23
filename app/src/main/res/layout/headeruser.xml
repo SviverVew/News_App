@@ -28,7 +28,7 @@
         app:shapeAppearanceOverlay="@style/tronImage" />
 
     <TextView
-        android:id="@+id/txtuser1"
+        android:id="@+id/txtuser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

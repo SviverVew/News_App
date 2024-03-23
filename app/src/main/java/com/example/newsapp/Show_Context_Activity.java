@@ -113,7 +113,18 @@ public class Show_Context_Activity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
                             // Dữ liệu đã tồn tại, không thực hiện ghi
-                            Toast.makeText(getApplicationContext(), "Tin đã lưu rồi!!", Toast.LENGTH_SHORT).show();
+                            DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference();
+                            DatabaseReference nodeRef = databaseRef.child("User/"+MailChangeEncode+"/MarkNews/"+ID);
+                            nodeRef.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(getApplicationContext(), "Đã xóa lưu", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        // Xảy ra lỗi trong quá trình xóa nút
+                                    }
+                                }
+                            });
 
                         } else {
                             // Dữ liệu chưa tồn tại, thực hiện ghi

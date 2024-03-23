@@ -19,13 +19,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity {
     EditText EmailSignUp,PassWord,RePassWord;
-    Button SignUpBtn;
+    Button SignUpBtn,Back;
     ProgressBar progressBar;
+    FirebaseDatabase db=FirebaseDatabase.getInstance();
     private FirebaseAuth Auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,14 @@ public class SignUpActivity extends AppCompatActivity {
         RePassWord=findViewById(R.id.signup_RePassword);
         SignUpBtn= findViewById(R.id.signup_submit);
         progressBar.setVisibility(View.INVISIBLE);
+        Back=findViewById(R.id.Back);
+        Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i= new Intent(SignUpActivity.this,LoginActivity.class);
+                startActivity(i);
+            }
+        });
         SignUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,10 +60,10 @@ public class SignUpActivity extends AppCompatActivity {
     }
     //đẩy data lên firebase realtime
     private void PushData(){
-        String UserName,Pass,RePass;
+        String UserName,Pass,RePass,UserID;
         UserName= EmailSignUp.getText().toString().toLowerCase();
         Pass=PassWord.getText().toString();
-        FirebaseDatabase db=FirebaseDatabase.getInstance();
+
         //push data in firebase
         //đổi mail sang dãy kí tự  để lưu dưới dạng id tránh dấu . và , không lưu đc trên firebase
         String MailChangeEncode = UtilsEncode.encodeEmailToNumber(UserName);
@@ -68,9 +78,10 @@ public class SignUpActivity extends AppCompatActivity {
         userRefEmail.setValue(UserName);
         String MarkNews = "User/"+MailChangeEncode+"/MarkNews";
         DatabaseReference userRefMarkNews = db.getReference(MarkNews);
+
     }
     private void SignUp() {
-        String UserName,Pass,RePass;
+        String UserName,Pass,RePass,UserID = null;
         UserName= EmailSignUp.getText().toString();
         Pass=PassWord.getText().toString();
          RePass = RePassWord.getText().toString();
@@ -92,7 +103,14 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+                String    UserName= EmailSignUp.getText().toString().toLowerCase();
+                    String MailChangeEncode = UtilsEncode.encodeEmailToNumber(UserName);
                     progressBar.setVisibility(View.VISIBLE);
+                    String UID = "User/"+MailChangeEncode+"/UID";
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    String uid = user.getUid();
+                    DatabaseReference userId = db.getReference(UID);
+                    userId.setValue(uid);
                     Toast.makeText(getApplicationContext(),"Đăng kí thành công!",Toast.LENGTH_SHORT).show();
                     PushData();
                     Intent i=new Intent(SignUpActivity.this,LoginActivity.class);

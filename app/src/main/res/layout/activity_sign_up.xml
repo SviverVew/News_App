@@ -6,9 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".SignUpActivity"
     android:orientation="vertical"
-    android:layout_margin="30dp"
 
-    android:background="@drawable/background_menu"
+    android:background="@drawable/regis"
     >
     <ImageView
 
@@ -20,7 +19,7 @@
 
     <ProgressBar
         android:id="@+id/progressBarSignUp"
-        style="?android:attr/progressBarStyle"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -39,35 +38,53 @@
             android:background="@drawable/edittext_border"
             android:hint="Nhập Email"
             android:paddingLeft="20dp"
+            android:textColorHint="#AC7878"
             android:textSize="15sp" />
 
         <EditText
             android:id="@+id/signup_Password"
             android:layout_width="300dp"
             android:layout_height="50dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/edittext_border"
             android:hint="Mật khẩu"
             android:inputType="textPassword"
-            android:textSize="15sp"
             android:paddingLeft="20dp"
-            android:layout_marginTop="30dp"/>
+            android:textColorHint="#AC7878"
+            android:textSize="15sp" />
+
         <EditText
             android:id="@+id/signup_RePassword"
             android:layout_width="300dp"
             android:layout_height="50dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/edittext_border"
             android:hint="Nhập lại mật khẩu"
             android:inputType="textPassword"
-            android:textSize="15sp"
             android:paddingLeft="20dp"
-            android:layout_marginTop="30dp"/>
+            android:textColorHint="#AC7878"
+            android:textColorLink="#AC7878"
+            android:textSize="15sp" />
+
         <Button
             android:id="@+id/signup_submit"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
             android:background="@drawable/edittext_border"
             android:text="Đăng ký"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"/>
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/Back"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:shadowColor="#000000"
+            android:text="back"
+            android:textColor="@color/white" />
     </LinearLayout>
 </LinearLayout>

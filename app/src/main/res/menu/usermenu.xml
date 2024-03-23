@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
     <group android:checkableBehavior="single">
-        <item android:id="@+id/home"
-            android:icon="@drawable/ic_home24"
+        <item android:id="@+id/homUser"
+
+            android:icon="@drawable/baseline_home"
             android:title="Trang chủ"
             />
         <item android:id="@+id/Lienhe"
@@ -14,21 +14,17 @@
     <item android:title="Thông tin tài khoản">
         <menu>
             <group android:checkableBehavior="single">
-                <item android:id="@+id/suathongtin"
-                    android:title="Sửa thông tin tài khoản"
+                <item android:id="@+id/ChangePass"
+                    android:title="Đổi mật khẩu"
                     />
                 <item android:id="@+id/xoathongtin"
-                    android:title="Xóa thông tin tài khoản"
+                    android:title="Xóa tài khoản"
                     />
             </group>
         </menu>
     </item>
     <group android:checkableBehavior="single" >
-        <item android:id="@+id/setting"
-            android:icon="@drawable/setting"
-            android:title="Cài đặt"
-            />
-        <item android:id="@+id/logout"
+        <item android:id="@+id/logoutProfile"
             android:icon="@drawable/baseline_logout"
             android:title="Đăng xuất"
             />
