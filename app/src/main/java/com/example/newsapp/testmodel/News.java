@@ -107,4 +107,5 @@ public class News implements Serializable {
 //        this.view = view;
     }
     public  News(){}
+
 }
