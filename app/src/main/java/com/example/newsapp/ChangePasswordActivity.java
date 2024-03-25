@@ -60,53 +60,55 @@ public class ChangePasswordActivity extends AppCompatActivity {
                         String passes = snapshot.getValue(String.class);
                         if(passThis.getText().toString().equals(passes)){
                             if(passThat.getText().toString().equals(passThatRepeat.getText().toString())){
-                                alertDialog.setTitle("Bạn chắc chắn muốn đổi mật khẩu?");
-                                alertDialog.setPositiveButton("Có", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-                                        FirebaseUser user = firebaseAuth.getCurrentUser();
+                               if (!passThat.getText().toString().isEmpty() || !passThatRepeat.getText().toString().isEmpty())  {
+                                    alertDialog.setTitle("Bạn chắc chắn muốn đổi mật khẩu?");
+                                    alertDialog.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+                                            FirebaseUser user = firebaseAuth.getCurrentUser();
 
-                                        user.updatePassword(passThat.getText().toString())
-                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                    @Override
-                                                    public void onComplete(@NonNull Task<Void> task) {
-                                                        if (task.isSuccessful()) {
-                                                            String passChage = "User/" + MailChangeEncode + "/PassWord";
-                                                            DatabaseReference userRefPas = db.getReference(passChage);
-                                                            Toast.makeText(ChangePasswordActivity.this, "Đổi mật khẩu thành công", Toast.LENGTH_SHORT).show();
-                                                            userRefPas.setValue(passThat.getText().toString());
-                                                            Intent i = new Intent(ChangePasswordActivity.this, LoginActivity.class);
-                                                            startActivity(i);
-                                                            FirebaseAuth.getInstance().signOut();
-                                                            SharedPreferences sharedPreferences=getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
-                                                            SharedPreferences.Editor editor=sharedPreferences.edit();
-                                                            editor.putString("name","");
-                                                            editor.apply();
-                                                            Intent Out = new Intent(getApplicationContext(), LoginActivity.class);
-                                                            startActivity(Out);
+                                            user.updatePassword(passThat.getText().toString())
+                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            if (task.isSuccessful()) {
+                                                                String passChage = "User/" + MailChangeEncode + "/PassWord";
+                                                                DatabaseReference userRefPas = db.getReference(passChage);
+                                                                Toast.makeText(ChangePasswordActivity.this, "Đổi mật khẩu thành công", Toast.LENGTH_SHORT).show();
+                                                                userRefPas.setValue(passThat.getText().toString());
+                                                                Intent i = new Intent(ChangePasswordActivity.this, LoginActivity.class);
+                                                                startActivity(i);
+                                                                FirebaseAuth.getInstance().signOut();
+                                                                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                                                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                                                editor.putString("name", "");
+                                                                editor.apply();
+                                                                Intent Out = new Intent(getApplicationContext(), LoginActivity.class);
+                                                                startActivity(Out);
 
-                                                        } else {
-                                                            Toast.makeText(ChangePasswordActivity.this, "Đăng xuất để đổi mật khẩu", Toast.LENGTH_SHORT).show();
+                                                            } else {
+                                                                Toast.makeText(ChangePasswordActivity.this, "Đăng xuất để đổi mật khẩu", Toast.LENGTH_SHORT).show();
+                                                            }
                                                         }
-                                                    }
-                                                });
-                                        dialog.dismiss();
-                                    }
-                                });
-                                alertDialog.setNegativeButton("Không", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        Toast.makeText(ChangePasswordActivity.this, "Hủy đổi mật kẩu", Toast.LENGTH_LONG).show();
+                                                    });
+                                            dialog.dismiss();
+                                        }
+                                    });
+                                    alertDialog.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Toast.makeText(ChangePasswordActivity.this, "Hủy đổi mật kẩu", Toast.LENGTH_LONG).show();
 
-                                        dialog.dismiss();
-                                    }
-                                });
-                                alertDialog.show();
+                                            dialog.dismiss();
+                                        }
+                                    });
+                                    alertDialog.show();
+                                }
+                               else { Toast.makeText(ChangePasswordActivity.this, "Không được bỏ trống mật khẩu", Toast.LENGTH_LONG).show();}
                             } else if (passThat.getText().toString().length()<6) {
                                 Toast.makeText(ChangePasswordActivity.this, "Mật khẩu phải >=6 kí tự", Toast.LENGTH_LONG).show();
-                            } else if (passThat.getText().toString().isEmpty()||passThatRepeat.getText().toString().isEmpty()) {
-                                Toast.makeText(ChangePasswordActivity.this, "Không được để trống mật khẩu", Toast.LENGTH_LONG).show();
+
                             }
 
                         }

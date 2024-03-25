@@ -7,9 +7,6 @@
     <item android:id="@+id/nav_save"
         android:title="@string/nav_save"
         android:icon="@drawable/baseline_save"/>
-    <item android:id="@+id/nav_change"
-        android:title="@string/nav_change"
-        android:icon="@drawable/baseline_change"/>
 </group>
     <item
         android:title="">

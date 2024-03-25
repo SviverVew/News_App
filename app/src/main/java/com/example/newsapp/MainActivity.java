@@ -101,14 +101,14 @@ public class MainActivity extends AppCompatActivity {
 
                 int itemID= menuItem.getItemId();
                 //đổi giao diện
-                isDarkMode = !isDarkMode;
+               /* isDarkMode = !isDarkMode;
                 if(itemID==R.id.nav_change){
                     if (isDarkMode) {
                         setDarkMode();
                     } else {
                         setLightMode();
                     }
-                }
+                }*/
                 //nút trang chủ
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                 if(itemID==R.id.nav_home){
