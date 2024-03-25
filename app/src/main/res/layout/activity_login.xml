@@ -39,7 +39,7 @@
             android:background="@drawable/edittext_border"
             android:hint="Email"
             android:paddingLeft="20dp"
-            android:textColorHint="#AC7878"
+            android:textColorHint="#FFFFFF"
             android:textSize="15sp" />
 
         <EditText
@@ -51,7 +51,7 @@
             android:hint="Mật khẩu"
             android:inputType="textPassword"
             android:paddingLeft="20dp"
-            android:textColorHint="#AC7878"
+            android:textColorHint="#FFFFFF"
             android:textSize="15sp" />
 
         <CheckBox
@@ -72,6 +72,15 @@
             android:background="@drawable/edittext_border"
             android:text="Đăng nhập"
             android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/ResetPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:text="Quên mật khẩu"
+            android:textColor="@android:color/holo_red_light" />
 
         <LinearLayout
             android:layout_width="match_parent"

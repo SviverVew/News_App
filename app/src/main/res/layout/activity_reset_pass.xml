@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/regis"
+    android:gravity="center"
+    tools:context=".ResetPassActivity">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Quên mật khẩu" />
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:textColor="#FFC107"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Hãy nhập Email của bạn và Click vào link có trong Email để có thể tìm lại mật khẩu" />
+
+    <EditText
+        android:id="@+id/editTextMailReset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="40dp"
+        android:layout_marginHorizontal="70dp"
+        android:backgroundTint="@android:color/darker_gray"
+        android:ems="10"
+        android:hint="Nhập Email"
+        android:inputType="text"
+        android:padding="15dp"
+        android:textColorHint="@color/white" />
+
+    <Button
+        android:id="@+id/ButtonReset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lấy mật khẩu"
+        android:layout_marginHorizontal="70dp"
+        android:textColor="@color/white"
+        android:background="@drawable/edittext_border"
+        android:drawableStart="@drawable/resetpasss"
+        android:paddingHorizontal="60dp"
+        />
+
+    <Button
+        android:id="@+id/ButtonBackReset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="70dp"
+        android:background="@android:color/transparent"
+        android:drawableStart="@drawable/ic_back"
+        android:textColor="@color/white"
+        android:paddingHorizontal="70dp"
+        android:text="Quay lại" />
+</LinearLayout>

@@ -28,7 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class LoginActivity extends AppCompatActivity {
   TextView createAcc;
      EditText Login_Pass, Login_UserName;
-    Button Submit;
+    Button Submit,ForgotPass;
     ProgressBar progressBar;
     CheckBox RememberMe;
     public  static final String SHARED_PREFS="sharedPrefs";
@@ -45,6 +45,15 @@ public class LoginActivity extends AppCompatActivity {
         Login_UserName=findViewById(R.id.login_username);
         Submit= findViewById(R.id.login_submit);
         progressBar.setVisibility(View.INVISIBLE);
+        ForgotPass=findViewById(R.id.ResetPass);
+        ForgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(LoginActivity.this,ResetPassActivity.class);
+                startActivity(i);
+            }
+        });
+
         checkBox();
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override

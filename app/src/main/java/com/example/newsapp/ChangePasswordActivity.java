@@ -31,7 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 public class ChangePasswordActivity extends AppCompatActivity {
 
     EditText passThis,passThat,passThatRepeat;
-    Button Change;
+    Button Change,back;
     public  static final String SHARED_PREFS="sharedPrefs";
     AlertDialog.Builder alertDialog;
     FirebaseDatabase db=FirebaseDatabase.getInstance();
@@ -45,6 +45,14 @@ public class ChangePasswordActivity extends AppCompatActivity {
         passThat=findViewById(R.id.PassThat);
         passThatRepeat=findViewById(R.id.PassThatRepeat);
         Change=findViewById(R.id.ChangePass_submit);
+        back=findViewById(R.id.Back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ChangePasswordActivity.this,LoginActivity.class);
+                startActivity(i);
+            }
+        });
         FirebaseUser UserPoint = FirebaseAuth.getInstance().getCurrentUser();
         String MailChangeEncode = UtilsEncode.encodeEmailToNumber(UserPoint.getEmail());
         String UID = "User/"+MailChangeEncode+"/PassWord";
